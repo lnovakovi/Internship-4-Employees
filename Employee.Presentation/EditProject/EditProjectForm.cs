@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Employee.Presentation
+namespace Employee.Presentation.EditProject
 {
-    public partial class Form1 : Form
+    public partial class EditProjectForm : Form
     {
-        public Form1()
+        public EditProjectForm()
         {
             InitializeComponent();
         }

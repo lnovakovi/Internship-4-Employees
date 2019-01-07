@@ -46,14 +46,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AddEmployee\AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddEmployee\AddEmployeeForm.Designer.cs">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddProject\AddProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProject\AddProjectForm.Designer.cs">
+      <DependentUpon>AddProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteEmployee\DeleteEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteEmployee\DeleteEmployeeForm.Designer.cs">
+      <DependentUpon>DeleteEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteProject\DeleteProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteProject\DeleteProjectForm.Designer.cs">
+      <DependentUpon>DeleteProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployee\EditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditEmployee\EditEmployeeForm.Designer.cs">
+      <DependentUpon>EditEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditProject\EditProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProject\EditProjectForm.Designer.cs">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs" />
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddEmployee\AddEmployeeForm.resx">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddProject\AddProjectForm.resx">
+      <DependentUpon>AddProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Employee.Data.Enums;
 using Employee.Infrastructure.Extensions;
+using  Employee.Data.Enums;
+using static Employee.Data.Enums.JobEnum;
 
 namespace Employee.Data.Models
 {
-    public class Employee
+    public class EmployeeClass
     {
         private string _name;
         private string _surname;
@@ -33,15 +31,15 @@ namespace Employee.Data.Models
             }
         }
         private string OIB { get => _oIB; set => _oIB = value.RemoveAllTheWhiteSpaces(); }
-        private DateTime DateoFBirth { get; set; }
-        private JobEnum Job { get; set; }
+        private DateTime DateOfBirth { get; set; }
+        private Job Job { get; set; }
 
-        public Employee(string name, string surname, string oib, DateTime dateoFBirth, JobEnum job)
+        public EmployeeClass(string name, string surname, string oib, DateTime dateOfBirth, Job job)
         {
             Name = name;
             Surname = surname;
             OIB = oib;
-            DateoFBirth = dateoFBirth;
+            DateOfBirth = dateOfBirth;
             Job = job;
         }
     }
