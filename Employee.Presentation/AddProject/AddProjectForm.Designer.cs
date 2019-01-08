@@ -37,8 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBoxEmployeesOnProject = new System.Windows.Forms.ListBox();
             this.btnProjectSave = new System.Windows.Forms.Button();
+            this.chkListEmployees = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,18 +111,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(492, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(240, 20);
+            this.label5.Size = new System.Drawing.Size(223, 20);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Check employees on that project";
-            // 
-            // listBoxEmployeesOnProject
-            // 
-            this.listBoxEmployeesOnProject.FormattingEnabled = true;
-            this.listBoxEmployeesOnProject.ItemHeight = 20;
-            this.listBoxEmployeesOnProject.Location = new System.Drawing.Point(496, 81);
-            this.listBoxEmployeesOnProject.Name = "listBoxEmployeesOnProject";
-            this.listBoxEmployeesOnProject.Size = new System.Drawing.Size(236, 244);
-            this.listBoxEmployeesOnProject.TabIndex = 9;
+            this.label5.Text = "Tick employees on that project";
             // 
             // btnProjectSave
             // 
@@ -132,14 +123,23 @@
             this.btnProjectSave.TabIndex = 10;
             this.btnProjectSave.Text = "Save";
             this.btnProjectSave.UseVisualStyleBackColor = true;
+            this.btnProjectSave.Click += new System.EventHandler(this.SaveProject);
+            // 
+            // chkListEmployees
+            // 
+            this.chkListEmployees.FormattingEnabled = true;
+            this.chkListEmployees.Location = new System.Drawing.Point(459, 74);
+            this.chkListEmployees.Name = "chkListEmployees";
+            this.chkListEmployees.Size = new System.Drawing.Size(443, 277);
+            this.chkListEmployees.TabIndex = 11;
             // 
             // AddProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(906, 450);
+            this.Controls.Add(this.chkListEmployees);
             this.Controls.Add(this.btnProjectSave);
-            this.Controls.Add(this.listBoxEmployeesOnProject);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.label4);
@@ -167,7 +167,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBoxEmployeesOnProject;
         private System.Windows.Forms.Button btnProjectSave;
+        private System.Windows.Forms.CheckedListBox chkListEmployees;
     }
 }

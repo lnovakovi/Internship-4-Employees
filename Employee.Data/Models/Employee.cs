@@ -1,7 +1,5 @@
 ﻿using System;
-using Employee.Data.Enums;
 using Employee.Infrastructure.Extensions;
-using  Employee.Data.Enums;
 using static Employee.Data.Enums.JobEnum;
 
 namespace Employee.Data.Models
@@ -9,7 +7,7 @@ namespace Employee.Data.Models
     public class EmployeeClass
     {
         private string _name;
-        private string _surname;
+        public string _surname;
         private string _oIB;
 
         public string Name
@@ -30,9 +28,9 @@ namespace Employee.Data.Models
                 _surname = _surname.CapitalizeEachWord();
             }
         }
-        private string OIB { get => _oIB; set => _oIB = value.RemoveAllTheWhiteSpaces(); }
-        private DateTime DateOfBirth { get; set; }
-        private Job Job { get; set; }
+        public string OIB { get => _oIB; set => _oIB = value.RemoveAllTheWhiteSpaces(); }
+        public DateTime DateOfBirth { get; set; }
+        public Job Job { get; set; }
 
         public EmployeeClass(string name, string surname, string oib, DateTime dateOfBirth, Job job)
         {
@@ -42,5 +40,11 @@ namespace Employee.Data.Models
             DateOfBirth = dateOfBirth;
             Job = job;
         }
+
+        public override string ToString()
+        {
+            return $"{Name} {Surname},{OIB}, {DateOfBirth.ToShortDateString()} , {Job.ToString()}";
+        }
+        
     }
 }

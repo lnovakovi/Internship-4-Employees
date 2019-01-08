@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Employee.Presentation.Main;
 
 namespace Employee.Presentation
 {
@@ -16,7 +17,7 @@ namespace Employee.Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuForm());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -7,8 +7,8 @@ namespace Employeee.Domain.Repositories
 {
     public class ProjectRepository
     {
-        public List<Project> _ListOfProjects;
-
+        private List<Project> _listOfProjects;
+       
         public ProjectRepository()
         {
             AddProjectData();
@@ -17,13 +17,18 @@ namespace Employeee.Domain.Repositories
         private void AddProjectData()
         {
 
-            _ListOfProjects = new List<Project>()
+            _listOfProjects = new List<Project>()
             {
-                new Project("DUMP days", StateEnum.StateProject.Finished, new DateTime(2017 - 12 - 02),
+                new Project("DUMP   days", StateEnum.StateProject.Finished, new DateTime(2017 - 12 - 02),
                     new DateTime(2018 - 11 - 02)),
                 new Project("Web page", StateEnum.StateProject.Planned)
             };
         }
-   
+        public List<Project> GetAllItems() => _listOfProjects;
+
+        public void AddNewProject(Project project)
+        {
+            _listOfProjects.Add(project);
+        }
     }
 }

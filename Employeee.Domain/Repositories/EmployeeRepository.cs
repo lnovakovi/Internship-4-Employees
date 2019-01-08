@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using Employee.Data.Enums;
 using Employee.Data.Models;
+using Employee.Infrastructure.Extensions;
+using static System.DateTime;
 
 
 namespace Employeee.Domain.Repositories
 {
     public class EmployeeRepository
     {
-        public List<EmployeeClass> _listOfEmployees;
+        private List<EmployeeClass> _listOfEmployees;
 
         public EmployeeRepository()
         {
@@ -24,6 +26,56 @@ namespace Employeee.Domain.Repositories
                 new EmployeeClass("Jessica","White","81920872",new DateTime(1885,10,01),JobEnum.Job.Designer),
                 new EmployeeClass("Charles","Black","34850201",new DateTime(1881,10,03),JobEnum.Job.Programmer )
             };
+        }
+
+        public List<EmployeeClass> AllItems()
+        {
+            return _listOfEmployees;
+        }
+
+        public bool CheckAge(DateTime choosedDate) => (Now - choosedDate).Days / 365 > 18;
+
+        public bool CheckOIB(string OIB)
+        {
+            var counter = 0;
+            if (_listOfEmployees == null)
+                return counter == 0;
+                
+            foreach (var employee in _listOfEmployees)
+            {
+                if (employee.OIB == OIB.RemoveAllTheWhiteSpaces())
+                    counter += 1;
+            }
+            return counter == 0;
+        }
+        public string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)
+    
+        {
+            if (CheckOIB(OIB.RemoveAllTheWhiteSpaces()) && CheckAge(dateOfBirth))
+            {
+                _listOfEmployees.Add(new EmployeeClass(name, surname, OIB, dateOfBirth, (JobEnum.Job)Enum.Parse(typeof(JobEnum.Job), position)));
+                return "OK!";
+            }
+            return "Adding failed";
+        }
+
+        public bool EditEmployee(EmployeeClass itemForEdit)
+        {
+            EmployeeClass itemToDelete = null;
+            foreach (var todoItem in AllItems())
+            {
+                if (todoItem.OIB == itemForEdit.OIB)
+                {
+                    itemToDelete = todoItem;
+                    break;
+                }
+            }
+            if (itemToDelete == null)
+                return false;
+            _listOfEmployees.Remove(itemToDelete);
+            _listOfEmployees.Add(itemForEdit);
+
+            return true;
         }
     }
 }

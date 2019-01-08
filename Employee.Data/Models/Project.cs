@@ -20,5 +20,10 @@ namespace Employee.Data.Models
             StartDate = startDate;
             EndDate = endDate;
         }
+
+        public override string ToString()
+        {
+            return $"{NameOfTheProject} , {StateOfTheProject} , {StartDate} - {EndDate}";
+        }
     }
 }

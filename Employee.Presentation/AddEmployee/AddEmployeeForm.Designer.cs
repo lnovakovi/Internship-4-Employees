@@ -39,8 +39,8 @@
             this.dateEmployeeBirth = new System.Windows.Forms.DateTimePicker();
             this.cmbJob = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.btnSaveEmployee = new System.Windows.Forms.Button();
+            this.listBoxProjects = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // label1
@@ -128,20 +128,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(69, 272);
+            this.label6.Location = new System.Drawing.Point(43, 244);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 20);
+            this.label6.Size = new System.Drawing.Size(409, 20);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Projects";
-            // 
-            // listBoxProjects
-            // 
-            this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.ItemHeight = 20;
-            this.listBoxProjects.Location = new System.Drawing.Point(183, 272);
-            this.listBoxProjects.Name = "listBoxProjects";
-            this.listBoxProjects.Size = new System.Drawing.Size(186, 124);
-            this.listBoxProjects.TabIndex = 11;
+            this.label6.Text = "Projects that employee works on/ will work on / worked on";
             // 
             // btnSaveEmployee
             // 
@@ -151,14 +142,23 @@
             this.btnSaveEmployee.TabIndex = 12;
             this.btnSaveEmployee.Text = "Save";
             this.btnSaveEmployee.UseVisualStyleBackColor = true;
+            this.btnSaveEmployee.Click += new System.EventHandler(this.SaveEmployee);
+            // 
+            // listBoxProjects
+            // 
+            this.listBoxProjects.Location = new System.Drawing.Point(111, 267);
+            this.listBoxProjects.Name = "listBoxProjects";
+            this.listBoxProjects.Size = new System.Drawing.Size(272, 146);
+            this.listBoxProjects.TabIndex = 13;
+            this.listBoxProjects.UseCompatibleStateImageBehavior = false;
             // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 516);
-            this.Controls.Add(this.btnSaveEmployee);
             this.Controls.Add(this.listBoxProjects);
+            this.Controls.Add(this.btnSaveEmployee);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbJob);
             this.Controls.Add(this.dateEmployeeBirth);
@@ -190,7 +190,7 @@
         private System.Windows.Forms.DateTimePicker dateEmployeeBirth;
         private System.Windows.Forms.ComboBox cmbJob;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListBox listBoxProjects;
         private System.Windows.Forms.Button btnSaveEmployee;
+        private System.Windows.Forms.ListView listBoxProjects;
     }
 }
