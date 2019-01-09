@@ -45,6 +45,10 @@ namespace Employee.Data.Models
         {
             return $"{Name} {Surname},{OIB}, {DateOfBirth.ToShortDateString()} , {Job.ToString()}";
         }
-        
+
+        public string NameAndSurname()
+        {
+            return $"{Name} {Surname}";
+        }
     }
 }

@@ -64,6 +64,12 @@
     <Compile Include="CheckDetails\CheckEmployeeDetailsForm.Designer.cs">
       <DependentUpon>CheckEmployeeDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CheckDetails\CheckEmployeesProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckDetails\CheckEmployeesProjects.Designer.cs">
+      <DependentUpon>CheckEmployeesProjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="CheckDetails\ProjectDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheckDetails\CheckEmployeeDetailsForm.resx">
       <DependentUpon>CheckEmployeeDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckDetails\CheckEmployeesProjects.resx">
+      <DependentUpon>CheckEmployeesProjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CheckDetails\ProjectDetailForm.resx">
       <DependentUpon>ProjectDetailForm.cs</DependentUpon>

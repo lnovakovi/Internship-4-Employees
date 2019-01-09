@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBoxEmployees = new System.Windows.Forms.ListBox();
             this.btnOpenEdit = new System.Windows.Forms.Button();
+            this.btnCheckProjects = new System.Windows.Forms.Button();
+            this.btnShowColor = new System.Windows.Forms.Button();
+            this.lstBoxEmployee = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -42,15 +44,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Details";
             // 
-            // listBoxEmployees
-            // 
-            this.listBoxEmployees.FormattingEnabled = true;
-            this.listBoxEmployees.ItemHeight = 20;
-            this.listBoxEmployees.Location = new System.Drawing.Point(22, 44);
-            this.listBoxEmployees.Name = "listBoxEmployees";
-            this.listBoxEmployees.Size = new System.Drawing.Size(770, 384);
-            this.listBoxEmployees.TabIndex = 1;
-            // 
             // btnOpenEdit
             // 
             this.btnOpenEdit.Location = new System.Drawing.Point(142, 445);
@@ -61,17 +54,48 @@
             this.btnOpenEdit.UseVisualStyleBackColor = true;
             this.btnOpenEdit.Click += new System.EventHandler(this.OpenEditEmployeeForm);
             // 
+            // btnCheckProjects
+            // 
+            this.btnCheckProjects.Location = new System.Drawing.Point(301, 449);
+            this.btnCheckProjects.Name = "btnCheckProjects";
+            this.btnCheckProjects.Size = new System.Drawing.Size(148, 49);
+            this.btnCheckProjects.TabIndex = 3;
+            this.btnCheckProjects.Text = "Check projects";
+            this.btnCheckProjects.UseVisualStyleBackColor = true;
+            this.btnCheckProjects.Click += new System.EventHandler(this.OpenCheckEmployeesProjectForm);
+            // 
+            // btnShowColor
+            // 
+            this.btnShowColor.BackColor = System.Drawing.Color.White;
+            this.btnShowColor.Location = new System.Drawing.Point(956, 54);
+            this.btnShowColor.Name = "btnShowColor";
+            this.btnShowColor.Size = new System.Drawing.Size(144, 57);
+            this.btnShowColor.TabIndex = 5;
+            this.btnShowColor.UseVisualStyleBackColor = false;
+            // 
+            // lstBoxEmployee
+            // 
+            this.lstBoxEmployee.FormattingEnabled = true;
+            this.lstBoxEmployee.ItemHeight = 20;
+            this.lstBoxEmployee.Location = new System.Drawing.Point(31, 38);
+            this.lstBoxEmployee.Name = "lstBoxEmployee";
+            this.lstBoxEmployee.Size = new System.Drawing.Size(861, 384);
+            this.lstBoxEmployee.TabIndex = 6;
+            this.lstBoxEmployee.SelectedIndexChanged += new System.EventHandler(this.ChangeColor);
+            // 
             // CheckEmployeeDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 510);
+            this.ClientSize = new System.Drawing.Size(1111, 510);
+            this.Controls.Add(this.lstBoxEmployee);
+            this.Controls.Add(this.btnShowColor);
+            this.Controls.Add(this.btnCheckProjects);
             this.Controls.Add(this.btnOpenEdit);
-            this.Controls.Add(this.listBoxEmployees);
             this.Controls.Add(this.label1);
             this.Name = "CheckEmployeeDetailsForm";
             this.Text = "CheckEmployeeDetailsForm";
-            this.Load += new System.EventHandler(this.CheckEmployeeDetailsForm_Load);
+            this.Load += new System.EventHandler(this.list);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,7 +104,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBoxEmployees;
         private System.Windows.Forms.Button btnOpenEdit;
+        private System.Windows.Forms.Button btnCheckProjects;
+        private System.Windows.Forms.Button btnShowColor;
+        private System.Windows.Forms.ListBox lstBoxEmployee;
     }
 }
