@@ -10,11 +10,11 @@ namespace Employee.Presentation.EditEmployee
     public partial class EditEmployeeForm : Form
     {
         public EmployeeClass Employee;
-        public EmployeeRepository _EmployeeRepository;
+       // public EmployeeRepository _EmployeeRepository;
         public EditEmployeeForm(EmployeeClass EmployeeToEdit)
         {
             Employee = EmployeeToEdit;
-            _EmployeeRepository= new EmployeeRepository();
+            //_EmployeeRepository= new EmployeeRepository();
             InitializeComponent();
             
         }
@@ -22,7 +22,7 @@ namespace Employee.Presentation.EditEmployee
         private void SaveEdit(object sender, EventArgs e)
         {
             var selectedItem = new EmployeeClass(txtName.Text,txtSurname.Text,txtOIB.Text.RemoveAllTheWhiteSpaces(),dateTimePickerEmployee.Value, (JobEnum.Job)Enum.Parse(typeof(JobEnum.Job), cmbJob.SelectedItem.ToString()));
-            _EmployeeRepository.EditEmployee(selectedItem);
+            //_EmployeeRepository.EditEmployee(selectedItem);
             Close();
         }
 

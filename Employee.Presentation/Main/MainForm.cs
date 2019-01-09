@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using Employee.Data.Models;
 using Employee.Presentation.AddEmployee;
 using Employee.Presentation.AddProject;
 using Employee.Presentation.CheckDetails;
@@ -10,21 +12,18 @@ namespace Employee.Presentation.Main
 {
     public partial class MainForm : Form
     {
-        private EmployeeRepository _employeeRepository;
-        private ProjectRepository _projectRepository;
-        
+       
+             
         public MainForm()
         {
+           
             InitializeComponent();
-            _employeeRepository=new EmployeeRepository();
-            ;
         }
         
         private void OpenAddForm(object sender, EventArgs e)
         {
             var addForm = new AddEmployeeForm();
             addForm.ShowDialog();
-
         }
 
         private void OpenCheckEmployeesForm(object sender, EventArgs e)

@@ -9,11 +9,11 @@ namespace Employee.Presentation.CheckDetails
 {
     public partial class CheckEmployeesProjects : Form
     {
-        private ProjectEmployeeRepository _projectEmployeeRepository;
+        
         private EmployeeClass _selectedEmployee;
         public CheckEmployeesProjects(EmployeeClass selectedEmployee)
         {
-            _projectEmployeeRepository = new ProjectEmployeeRepository();
+            
             _selectedEmployee = selectedEmployee;
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace Employee.Presentation.CheckDetails
         private void CheckEmployeesProjects_Load(object sender, EventArgs e)
         {
             var counter = 0;
-            var listToShow = _projectEmployeeRepository.GetAllItems();
+            var listToShow = ProjectEmployeeRepository.GetAllItems();
             foreach (var item in listToShow)
             {
                 if (item.Item1.OIB == _selectedEmployee.OIB)

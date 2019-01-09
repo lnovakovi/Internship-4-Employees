@@ -95,7 +95,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CheckEmployeeDetailsForm";
             this.Text = "CheckEmployeeDetailsForm";
-            this.Load += new System.EventHandler(this.list);
+            //this.Load += new System.EventHandler(this.list);
             this.ResumeLayout(false);
             this.PerformLayout();
 

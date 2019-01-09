@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Employee.Presentation.Main;
+using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation
 {
@@ -12,9 +13,17 @@ namespace Employee.Presentation
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
+        [STAThread] 
         static void Main()
         {
+
+            //adding hardcored information
+            EmployeeRepository.AddData();
+            ProjectRepository.AddProjectData();
+            ProjectEmployeeRepository.AddDataEmployee();
+            ProjectEmployeeRepository.AddDataProject();
+            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
