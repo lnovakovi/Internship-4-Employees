@@ -20,11 +20,6 @@ namespace Employee.Presentation.CheckDetails
             InitializeComponent();
         }
 
-//        private void CheckEmployeeDetailsForm_Load(object sender, EventArgs e)
-//        {
-//            
-//        }
-
         private void OpenEditEmployeeForm(object sender, EventArgs e)
         {
             var selectedItem = lstBoxEmployee.SelectedItem as EmployeeClass;            
@@ -41,33 +36,11 @@ namespace Employee.Presentation.CheckDetails
             checkForm.ShowDialog();
         }
 
-        //private void list(object sender, EventArgs e)
-        //{
-            
-        //    //var _listOfEmployees = EmployeeRepository.AllItems();
-        //    var listProjects = _projectEmployeeRepository.GetAllItems();
-        //    foreach (var employee in _listOfEmployees)
-        //    {
-        //        lstBoxEmployee.Items.Add(employee);
-        //        foreach (var item in listProjects)
-        //        {
-        //            if (employee.OIB == item.Item1.OIB)
-        //            {
-        //                foreach (var project in item.Item2)
-        //                {
-        //                    counterHours += project.Item2;
-        //                }
-        //            }
-        //        }
-
-        //    }
-        //}
-
         private void ChangeColor(object sender, EventArgs e)
         {
             var counterHours = 0;
             
-            //_listOfEmployees = _employeeRepository.AllItems();
+            
             var listProjects = ProjectEmployeeRepository.GetAllItems();
             var selectedItem = _listOfEmployees.ElementAt(lstBoxEmployee.SelectedIndex);
             foreach (var item in listProjects)
@@ -89,6 +62,14 @@ namespace Employee.Presentation.CheckDetails
             else
             {
                 btnShowColor.BackColor = Color.White;
+            }
+        }
+
+        private void CheckEmployeeDetailsForm_Load(object sender, EventArgs e)
+        {
+            foreach (var employee in _listOfEmployees)
+            {
+                lstBoxEmployee.Items.Add(employee);
             }
         }
     }

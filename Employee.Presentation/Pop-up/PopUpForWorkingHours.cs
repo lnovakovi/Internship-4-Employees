@@ -13,21 +13,24 @@ namespace Employee.Presentation.Pop_up
         {
             _oib = oib;
             _project = project;
-            labelInstruction.Text = $"Enter working hours for {project}";
             InitializeComponent();
+            labelInstruction.Text = $"Enter working hours for {project}";
+
         }
 
         private void Close(object sender, EventArgs e)
         {
-           if(txtWorkingHours.Text.CheckIfNumber() && txtWorkingHours.Text.CheckIfEmpty())
-            {
-                ProjectEmployeeRepository.BeforeAddingProjects(_oib,_project,int.Parse(txtWorkingHours.Text));
-                Close();
-            }
-           else
-           {
-               MessageBox.Show("Wrong input");
-           }
+            //if(txtWorkingHours.Text.CheckIfNumber() && txtWorkingHours.Text.CheckIfEmpty())
+            // {
+            //     ProjectEmployeeRepository.BeforeAddingProjects(_oib,_project,int.Parse(txtWorkingHours.Text));
+            //     Close();
+            // }
+            //else
+            //{
+            //    MessageBox.Show("Wrong input");
+            //}
+            ProjectEmployeeRepository.BeforeAddingProjects(_oib, _project, int.Parse(txtWorkingHours.Text));
+            Close();
         }
     }
 }

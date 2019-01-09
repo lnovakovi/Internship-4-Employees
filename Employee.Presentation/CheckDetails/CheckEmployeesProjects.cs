@@ -20,22 +20,17 @@ namespace Employee.Presentation.CheckDetails
 
         private void CheckEmployeesProjects_Load(object sender, EventArgs e)
         {
-            var counter = 0;
             var listToShow = ProjectEmployeeRepository.GetAllItems();
             foreach (var item in listToShow)
             {
-                if (item.Item1.OIB == _selectedEmployee.OIB)
-                {
-                    
+                if (item.Item1 == _selectedEmployee)
+                {                  
                     foreach (var project in item.Item2)
                     { 
                         lstBoxProjects.Items.Add(project.Item1.NameOfTheProject +" " + project.Item2 + "hours");
-                        counter += project.Item2;
                     }
                 }             
-            }
-
-           
+            }         
         }
     }
 }
