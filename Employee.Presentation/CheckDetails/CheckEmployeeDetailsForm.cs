@@ -38,9 +38,7 @@ namespace Employee.Presentation.CheckDetails
 
         private void ChangeColor(object sender, EventArgs e)
         {
-            var counterHours = 0;
-            
-            
+            var counterHours = 0;        
             var listProjects = ProjectEmployeeRepository.GetAllItems();
             var selectedItem = _listOfEmployees.ElementAt(lstBoxEmployee.SelectedIndex);
             foreach (var item in listProjects)
@@ -53,15 +51,26 @@ namespace Employee.Presentation.CheckDetails
                     }
                 }                  
             }
-            if (counterHours < 30 && counterHours > 0 ) { btnShowColor.BackColor = Color.Yellow;}
-            else if ( counterHours >=30 && counterHours <=40) { btnShowColor.BackColor = Color.Green;}               
+
+            if (counterHours < 30 && counterHours > 0)
+            {
+                btnShowColor.BackColor = Color.Yellow;
+                btnShowColor.Text = $@"{counterHours} hours";
+            }
+            else if (counterHours >= 30 && counterHours <= 40)
+            {
+                btnShowColor.BackColor = Color.Green;
+                btnShowColor.Text = $@"{counterHours} hours";
+            }               
             else if (counterHours > 40)
             {
                 btnShowColor.BackColor = Color.Red;
+                btnShowColor.Text = $@"{counterHours} hours";
             }
             else
             {
                 btnShowColor.BackColor = Color.White;
+                btnShowColor.Text = $@"{counterHours} hours";
             }
         }
 
@@ -71,6 +80,7 @@ namespace Employee.Presentation.CheckDetails
             {
                 lstBoxEmployee.Items.Add(employee);
             }
+
         }
     }
 }

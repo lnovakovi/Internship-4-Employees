@@ -17,7 +17,7 @@ namespace Employee.Presentation.Pop_up
             labelInstruction.Text = $"Enter working hours for {project}";
 
         }
-
+        //need to check if number is right 
         private void Close(object sender, EventArgs e)
         {
             //if(txtWorkingHours.Text.CheckIfNumber() && txtWorkingHours.Text.CheckIfEmpty())

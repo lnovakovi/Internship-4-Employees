@@ -39,6 +39,7 @@
             this.dateTimePickerEmployee = new System.Windows.Forms.DateTimePicker();
             this.cmbJob = new System.Windows.Forms.ComboBox();
             this.btnSaveEdit = new System.Windows.Forms.Button();
+            this.lstBoxProjects = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -132,11 +133,22 @@
             this.btnSaveEdit.UseVisualStyleBackColor = true;
             this.btnSaveEdit.Click += new System.EventHandler(this.SaveEdit);
             // 
+            // lstBoxProjects
+            // 
+            this.lstBoxProjects.FormattingEnabled = true;
+            this.lstBoxProjects.ItemHeight = 20;
+            this.lstBoxProjects.Location = new System.Drawing.Point(454, 31);
+            this.lstBoxProjects.Name = "lstBoxProjects";
+            this.lstBoxProjects.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lstBoxProjects.Size = new System.Drawing.Size(317, 244);
+            this.lstBoxProjects.TabIndex = 11;
+            // 
             // EditEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lstBoxProjects);
             this.Controls.Add(this.btnSaveEdit);
             this.Controls.Add(this.cmbJob);
             this.Controls.Add(this.dateTimePickerEmployee);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerEmployee;
         private System.Windows.Forms.ComboBox cmbJob;
         private System.Windows.Forms.Button btnSaveEdit;
+        private System.Windows.Forms.ListBox lstBoxProjects;
     }
 }

@@ -40,7 +40,7 @@
             this.cmbJob = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSaveEmployee = new System.Windows.Forms.Button();
-            this.lstBoxProjects = new System.Windows.Forms.CheckedListBox();
+            this.lstBoxProjects = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -147,9 +147,11 @@
             // lstBoxProjects
             // 
             this.lstBoxProjects.FormattingEnabled = true;
-            this.lstBoxProjects.Location = new System.Drawing.Point(38, 275);
+            this.lstBoxProjects.ItemHeight = 20;
+            this.lstBoxProjects.Location = new System.Drawing.Point(49, 275);
             this.lstBoxProjects.Name = "lstBoxProjects";
-            this.lstBoxProjects.Size = new System.Drawing.Size(413, 130);
+            this.lstBoxProjects.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lstBoxProjects.Size = new System.Drawing.Size(402, 144);
             this.lstBoxProjects.TabIndex = 13;
             // 
             // AddEmployeeForm
@@ -191,6 +193,6 @@
         private System.Windows.Forms.ComboBox cmbJob;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSaveEmployee;
-        private System.Windows.Forms.CheckedListBox lstBoxProjects;
+        private System.Windows.Forms.ListBox lstBoxProjects;
     }
 }
