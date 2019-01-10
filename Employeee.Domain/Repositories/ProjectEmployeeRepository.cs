@@ -1,47 +1,156 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Employee.Data.Models;
 
 namespace Employeee.Domain.Repositories
 {
-    public class ProjectEmployeeRepository
+    public static class ProjectEmployeeRepository
     {
-        private EmployeeRepository _employeeRepository;
+        
+        //relation employee-projects
+        private static List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> _employeeWithListOfProjects;
 
-        private ProjectRepository _projectRepository;
-        //relation employee-project
-        private List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> _employeeWithListOfProjects;
+        //relation project-employees
+        private static List<Tuple<Project, List<Tuple<EmployeeClass, int>>>> _projectWithListOfEmployees;
 
-        //relation project-employee
-        private Tuple<Project, List<Tuple<EmployeeClass, int>>> _projectWithListOfEmployees;
-        public Tuple<Project, List<Tuple<EmployeeClass, int>>> GetAllData() => _projectWithListOfEmployees;
+        //method to return projects with employees
+        public static List<Tuple<Project, List<Tuple<EmployeeClass, int>>>> GetAllData() => _projectWithListOfEmployees;
 
-        public ProjectEmployeeRepository()
-        {
-            _employeeRepository = new EmployeeRepository();
-            _projectRepository = new ProjectRepository();
-            AddDataEmployee();
-        }
-        public List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> GetAllItems() => _employeeWithListOfProjects;
+        //method to return employees with projects
+        public static List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> GetAllItems() => _employeeWithListOfProjects;
 
-        public void AddDataEmployee()
+       
+        private static List<EmployeeClass> _listOfEmployee;
+        private static List<Project> _listOfProjects;
+        public static void AddDataEmployee()
         {
             _employeeWithListOfProjects = new List<Tuple<EmployeeClass, List<Tuple<Project, int>>>>();
-            var listOfEmployee = _employeeRepository.AllItems();
-            var listOfProjects = _projectRepository.GetAllItems(); 
-            var podTuple = new Tuple<Project,int>(listOfProjects.ElementAt(0),7);
-            var podTuple2 = new Tuple<Project,int>(listOfProjects.ElementAt(1),8);
-            var listProject = new List<Tuple<Project, int>>();
-            listProject.Add(podTuple);
-            listProject.Add(podTuple2);
-            var myTuple = new Tuple<EmployeeClass,List<Tuple<Project,int>>>(listOfEmployee.ElementAt(0),listProject);
-            _employeeWithListOfProjects.Add(myTuple);
+            _listOfEmployee = EmployeeRepository.AllItems();
+            _listOfProjects = ProjectRepository.GetAllItems();
+            var listProject = new List<Tuple<Project, int>>()
+            {
+                new Tuple<Project, int>(_listOfProjects.ElementAt(0), 7),
+                new Tuple<Project, int>(_listOfProjects.ElementAt(1), 8)
+            };
+            _employeeWithListOfProjects.Add(new Tuple<EmployeeClass, List<Tuple<Project, int>>>(_listOfEmployee.ElementAt(0), listProject));
+        }
 
-
-
-
+        public static void AddDataProject()
+        {
+            _projectWithListOfEmployees = new List<Tuple<Project, List<Tuple<EmployeeClass, int>>>>();
+            _listOfProjects = ProjectRepository.GetAllItems();
+            _listOfEmployee = EmployeeRepository.AllItems();
+            var listEmployee = new List<Tuple<EmployeeClass, int>>()
+            {
+                new Tuple<EmployeeClass, int>(_listOfEmployee.ElementAt(0), 7),
+                new Tuple<EmployeeClass, int>(_listOfEmployee.ElementAt(1), 12)
+            };
+            _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(_listOfProjects.ElementAt(0),listEmployee));
 
         }
+        public static void AddNewEmployeeToTheProject(Project project, EmployeeClass employee,
+            int numberOfWorkingHours)
+        {
+            var found = false;
+            _listOfProjects = ProjectRepository.GetAllItems();
+            if (_projectWithListOfEmployees != null)
+            {
+                foreach (var Project in _listOfProjects)
+                {
+                    foreach (var item in _projectWithListOfEmployees)
+                    {
+                        // find matching project
+                        if (item.Item1 == project)
+                        {
+                            // check if employee is already on the project
+                            foreach (var tupleEmployee in item.Item2)
+                            {
+                                if (tupleEmployee.Item1.OIB == employee.OIB)
+                                {
+                                    break;
+                                    found = true;
+                                }
+                            }
+                           
+                        }
+                    }
+                }
+
+                if (!found)
+                {
+                    var list = new List<Tuple<EmployeeClass, int>>();
+                    list.Add(new Tuple<EmployeeClass, int>(employee, numberOfWorkingHours));
+                   _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(project,list));                   
+
+                }
+
+            }
+            else
+            {
+                var list = new List<Tuple<EmployeeClass, int>>()
+                {
+                    new Tuple<EmployeeClass, int>(employee, numberOfWorkingHours)
+                };
+                _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(project, list));
+            }
+
+           
+        }
+
+        public static void AddNewProjectToEmployee(EmployeeClass employee, Project project, int numberOfWorkingHours)
+        {
+            _listOfEmployee = EmployeeRepository.AllItems();
+            var found = false;
+            if (_employeeWithListOfProjects != null)
+            {
+                //go through _list of employees
+                foreach (var item in _listOfEmployee)
+                {  //check if it is in relation list employee-project
+                    foreach (var relation in _employeeWithListOfProjects)
+                    {
+                        if (relation.Item1.OIB == item.OIB && item.OIB == employee.OIB)
+                        { // if it is in relation list already, just add the project to the employee
+                            relation.Item2.Add(new Tuple<Project, int>(project, numberOfWorkingHours));
+                            found = true;
+                            break;
+                        }
+                    }                   
+                }
+                if (!found)
+                {
+                    var list = new List<Tuple<Project, int>>();
+                    list.Add(new Tuple<Project, int>(project, numberOfWorkingHours));
+                    _employeeWithListOfProjects.Add(new Tuple<EmployeeClass, List<Tuple<Project, int>>>(employee, list));
+                }
+            }
+            else
+            { //if list is empty,just add it 
+                var list = new List<Tuple<Project, int>>()
+                {
+                    new Tuple<Project, int>(project, numberOfWorkingHours)
+                };
+                    _employeeWithListOfProjects.Add(
+                        new Tuple<EmployeeClass, List<Tuple<Project, int>>>(employee, list));
+            }
+            
+        }
+
+        public static void BeforeAddingProjects(string oib, Project project,int numberOfWorkingHours)
+        {
+            _listOfEmployee = EmployeeRepository.AllItems();
+            foreach (var employee in _listOfEmployee)
+            {
+                if (employee.OIB == oib)
+                {
+                   AddNewProjectToEmployee(employee,project,numberOfWorkingHours);
+                    AddNewEmployeeToTheProject(project, employee, numberOfWorkingHours);
+                }
+            }
+        }
+
+        
     }
 }
+;

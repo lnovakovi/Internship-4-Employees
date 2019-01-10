@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.chkListBoxProject = new System.Windows.Forms.CheckedListBox();
+            this.btnCheckEmployees = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -49,11 +51,32 @@
             this.chkListBoxProject.Size = new System.Drawing.Size(480, 277);
             this.chkListBoxProject.TabIndex = 1;
             // 
+            // btnCheckEmployees
+            // 
+            this.btnCheckEmployees.Location = new System.Drawing.Point(43, 369);
+            this.btnCheckEmployees.Name = "btnCheckEmployees";
+            this.btnCheckEmployees.Size = new System.Drawing.Size(148, 60);
+            this.btnCheckEmployees.TabIndex = 2;
+            this.btnCheckEmployees.Text = "Check Employees";
+            this.btnCheckEmployees.UseVisualStyleBackColor = true;
+            this.btnCheckEmployees.Click += new System.EventHandler(this.OpenFormCheckProjectEmployees);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(279, 374);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(152, 54);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Edit project";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // ProjectDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCheckEmployees);
             this.Controls.Add(this.chkListBoxProject);
             this.Controls.Add(this.label1);
             this.Name = "ProjectDetailForm";
@@ -68,5 +91,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox chkListBoxProject;
+        private System.Windows.Forms.Button btnCheckEmployees;
+        private System.Windows.Forms.Button button2;
     }
 }

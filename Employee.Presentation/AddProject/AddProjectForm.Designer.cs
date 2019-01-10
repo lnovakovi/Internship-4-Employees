@@ -38,7 +38,7 @@
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnProjectSave = new System.Windows.Forms.Button();
-            this.chkListEmployees = new System.Windows.Forms.CheckedListBox();
+            this.lstBoxEmployee = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -125,20 +125,22 @@
             this.btnProjectSave.UseVisualStyleBackColor = true;
             this.btnProjectSave.Click += new System.EventHandler(this.SaveProject);
             // 
-            // chkListEmployees
+            // lstBoxEmployee
             // 
-            this.chkListEmployees.FormattingEnabled = true;
-            this.chkListEmployees.Location = new System.Drawing.Point(459, 74);
-            this.chkListEmployees.Name = "chkListEmployees";
-            this.chkListEmployees.Size = new System.Drawing.Size(443, 277);
-            this.chkListEmployees.TabIndex = 11;
+            this.lstBoxEmployee.FormattingEnabled = true;
+            this.lstBoxEmployee.ItemHeight = 20;
+            this.lstBoxEmployee.Location = new System.Drawing.Point(476, 76);
+            this.lstBoxEmployee.Name = "lstBoxEmployee";
+            this.lstBoxEmployee.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lstBoxEmployee.Size = new System.Drawing.Size(423, 224);
+            this.lstBoxEmployee.TabIndex = 11;
             // 
             // AddProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 450);
-            this.Controls.Add(this.chkListEmployees);
+            this.Controls.Add(this.lstBoxEmployee);
             this.Controls.Add(this.btnProjectSave);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbState);
@@ -168,6 +170,6 @@
         private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnProjectSave;
-        private System.Windows.Forms.CheckedListBox chkListEmployees;
+        private System.Windows.Forms.ListBox lstBoxEmployee;
     }
 }

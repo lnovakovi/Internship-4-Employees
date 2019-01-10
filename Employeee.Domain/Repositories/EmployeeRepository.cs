@@ -8,16 +8,10 @@ using static System.DateTime;
 
 namespace Employeee.Domain.Repositories
 {
-    public class EmployeeRepository
+    public static class EmployeeRepository
     {
-        private List<EmployeeClass> _listOfEmployees;
-
-        public EmployeeRepository()
-        {
-            AddData();
-        }
-        
-        public void AddData()
+        private static List<EmployeeClass> _listOfEmployees;       
+        public static void AddData()
         {
            
             _listOfEmployees = new List<EmployeeClass>()
@@ -28,14 +22,14 @@ namespace Employeee.Domain.Repositories
             };
         }
 
-        public List<EmployeeClass> AllItems()
+        public static List<EmployeeClass> AllItems()
         {
             return _listOfEmployees;
         }
 
-        public bool CheckAge(DateTime choosedDate) => (Now - choosedDate).Days / 365 > 18;
+        public static bool CheckAge(DateTime choosedDate) => (Now - choosedDate).Days / 365 > 18;
 
-        public bool CheckOIB(string OIB)
+        public static bool CheckOIB(string OIB)
         {
             var counter = 0;
             if (_listOfEmployees == null)
@@ -48,7 +42,7 @@ namespace Employeee.Domain.Repositories
             }
             return counter == 0;
         }
-        public string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)
+        public static string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)
     
         {
             if (CheckOIB(OIB.RemoveAllTheWhiteSpaces()) && CheckAge(dateOfBirth))
@@ -59,7 +53,7 @@ namespace Employeee.Domain.Repositories
             return "Adding failed";
         }
 
-        public bool EditEmployee(EmployeeClass itemForEdit)
+        public static bool EditEmployee(EmployeeClass itemForEdit)
         {
             EmployeeClass itemToDelete = null;
             foreach (var todoItem in AllItems())

@@ -5,16 +5,11 @@ using Employee.Data.Models;
 
 namespace Employeee.Domain.Repositories
 {
-    public class ProjectRepository
+    public static class ProjectRepository
     {
-        private List<Project> _listOfProjects;
-       
-        public ProjectRepository()
-        {
-            AddProjectData();
-        }
-
-        private void AddProjectData()
+        private static List<Project> _listOfProjects;
+             
+        public static void AddProjectData()
         {
 
             _listOfProjects = new List<Project>()
@@ -24,9 +19,9 @@ namespace Employeee.Domain.Repositories
                 new Project("Web page", StateEnum.StateProject.Planned)
             };
         }
-        public List<Project> GetAllItems() => _listOfProjects;
+        public static List<Project> GetAllItems() => _listOfProjects;
 
-        public void AddNewProject(Project project)
+        public static void AddNewProject(Project project)
         {
             _listOfProjects.Add(project);
         }

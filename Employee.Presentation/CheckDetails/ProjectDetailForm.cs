@@ -21,8 +21,15 @@ namespace Employee.Presentation.CheckDetails
             _listOfProjects = ProjectRepository.GetAllItems();
             foreach (var project in _listOfProjects)
             {
-                chkListBoxProject.Items.Add(project.ToString());
+                chkListBoxProject.Items.Add(project);
             }
+        }
+
+        private void OpenFormCheckProjectEmployees(object sender, System.EventArgs e)
+        {
+            var selectedProject = chkListBoxProject.SelectedItem as Project;
+             var checkForm = new EmployeesOnProjectForm(selectedProject);
+            checkForm.ShowDialog();
         }
     }
 }

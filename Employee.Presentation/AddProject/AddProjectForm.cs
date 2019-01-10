@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Employee.Data.Enums;
 using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
+using Employee.Presentation.Pop_up;
 using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation.AddProject
@@ -11,12 +12,10 @@ namespace Employee.Presentation.AddProject
     public partial class AddProjectForm : Form
     {
         private List<EmployeeClass> _listOfEmployees;
-        //private EmployeeRepository _employeeRepository;
         
         public AddProjectForm()
         {
             InitializeComponent();
-            
             AddStatesOfProjects();
             AddEmployees();
             
@@ -33,11 +32,11 @@ namespace Employee.Presentation.AddProject
 
         public void AddEmployees()
         {
-            //_listOfEmployees = _employeeRepository.AllItems();
-            
+            lstBoxEmployee.Items.Clear();
+            _listOfEmployees = EmployeeRepository.AllItems();
             foreach (var employee in _listOfEmployees)
             {
-                chkListEmployees.Items.Add(employee.ToString());
+                lstBoxEmployee.Items.Add(employee);
             }
         }
        
@@ -46,8 +45,14 @@ namespace Employee.Presentation.AddProject
 
             if (!txtProjectName.ToString().CheckIfEmpty() && cmbState.SelectedItem != null)
             {
-                var project = new Project(txtProjectName.ToString(), (StateEnum.StateProject)Enum.Parse(typeof(StateEnum.StateProject), cmbState.SelectedItem.ToString()), datePickerStartDate.Value, datePickerEndDate.Value);
+                var project = new Project(txtProjectName.Text, (StateEnum.StateProject)Enum.Parse(typeof(StateEnum.StateProject), cmbState.SelectedItem.ToString()), datePickerStartDate.Value, datePickerEndDate.Value);
                 ProjectRepository.AddNewProject(project);
+                var selectedEmployees = lstBoxEmployee.SelectedItems;
+                foreach (var employee in selectedEmployees)
+                {
+                    var popUp = new PopUpForWorkingHours2(employee as EmployeeClass,project);
+                    popUp.ShowDialog();
+                }
             }
 
             

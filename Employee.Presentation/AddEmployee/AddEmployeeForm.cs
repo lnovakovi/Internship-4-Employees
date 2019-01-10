@@ -16,13 +16,10 @@ namespace Employee.Presentation.AddEmployee
        
 
         public AddEmployeeForm()
-        {
-                 
+        {               
             InitializeComponent();
             RefreshProjectsInListBox();
             AddJobsToCombo();
-
-
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -36,7 +33,7 @@ namespace Employee.Presentation.AddEmployee
             _listOfProjects = ProjectRepository.GetAllItems();
             foreach (var project in _listOfProjects)
             {
-                lstBoxProjects.Items.Add(project.NameOfTheProject);
+                lstBoxProjects.Items.Add(project);
             }
         }
 
@@ -50,15 +47,15 @@ namespace Employee.Presentation.AddEmployee
         }
         private void SaveEmployee(object sender, EventArgs e)
         {
-            
+            //always wrong input
             if (!txtEmployeeName.ToString().CheckIfEmpty() && !txtEmployeeSurname.ToString().CheckIfEmpty() &&
-                !txtOIB.ToString().CheckIfNumber() && cmbJob.SelectedItem != null)
-            {                
+                !txtOIB.ToString().CheckIfNumber()  && cmbJob.SelectedItem != null)
+            {           
                 MessageBox.Show(EmployeeRepository.AddEmployee(txtEmployeeName.Text, txtEmployeeSurname.Text, txtOIB.Text, dateEmployeeBirth.Value, cmbJob.SelectedItem.ToString()));
                 var selectedProjects = lstBoxProjects.SelectedItems;
                 foreach (var project in selectedProjects)
                 {
-                    var popUp = new PopUpForWorkingHours(project,txtOIB.Text);
+                    var popUp = new PopUpForWorkingHours(project as Project,txtOIB.Text);
                     popUp.ShowDialog();
                 }
                 Close();                
