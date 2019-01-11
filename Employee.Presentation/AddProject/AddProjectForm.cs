@@ -43,8 +43,9 @@ namespace Employee.Presentation.AddProject
         private void SaveProject(object sender, EventArgs e)
         {
 
-            if (!txtProjectName.ToString().CheckIfEmpty() && cmbState.SelectedItem != null)
+            if (!txtProjectName.ToString().CheckIfEmpty() && cmbState.SelectedItem != null && ProjectRepository.CheckName(txtProjectName.Text))
             {
+                
                 var project = new Project(txtProjectName.Text, (StateEnum.StateProject)Enum.Parse(typeof(StateEnum.StateProject), cmbState.SelectedItem.ToString()), datePickerStartDate.Value, datePickerEndDate.Value);
                 ProjectRepository.AddNewProject(project);
                 var selectedEmployees = lstBoxEmployee.SelectedItems;

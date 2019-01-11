@@ -60,7 +60,7 @@
             this.chkListBoxEmployee.FormattingEnabled = true;
             this.chkListBoxEmployee.Location = new System.Drawing.Point(8, 34);
             this.chkListBoxEmployee.Name = "chkListBoxEmployee";
-            this.chkListBoxEmployee.Size = new System.Drawing.Size(572, 382);
+            this.chkListBoxEmployee.Size = new System.Drawing.Size(696, 382);
             this.chkListBoxEmployee.TabIndex = 3;
             // 
             // DeleteEmployeeForm

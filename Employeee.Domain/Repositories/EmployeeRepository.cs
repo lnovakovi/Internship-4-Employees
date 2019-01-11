@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employee.Data.Enums;
 using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
@@ -70,6 +71,15 @@ namespace Employeee.Domain.Repositories
             _listOfEmployees.Add(itemForEdit);
 
             return true;
+        }
+
+        public static void DeleteEmployee(EmployeeClass selectedEmployee)
+        {
+            foreach (var employee in _listOfEmployees.ToList())
+            {
+                if (employee == selectedEmployee)
+                    _listOfEmployees.Remove(employee);
+            }
         }
     }
 }

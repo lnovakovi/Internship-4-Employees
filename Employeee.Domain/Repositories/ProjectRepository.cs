@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employee.Data.Enums;
 using Employee.Data.Models;
 
@@ -24,6 +25,26 @@ namespace Employeee.Domain.Repositories
         public static void AddNewProject(Project project)
         {
             _listOfProjects.Add(project);
+        }
+
+        public static bool CheckName(string name)
+        {
+            foreach (var project in _listOfProjects)
+            {
+                if (project.NameOfTheProject.ToLower() == name.ToLower())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static void DeleteProject(Project selectedProject)
+        {
+            foreach (var project in _listOfProjects.ToList())
+            {
+                if (project == selectedProject)
+                    _listOfProjects.Remove(project);
+            }
         }
     }
 }

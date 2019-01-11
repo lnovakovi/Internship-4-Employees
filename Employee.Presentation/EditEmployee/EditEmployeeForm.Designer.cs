@@ -40,6 +40,8 @@
             this.cmbJob = new System.Windows.Forms.ComboBox();
             this.btnSaveEdit = new System.Windows.Forms.Button();
             this.lstBoxProjects = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -125,7 +127,7 @@
             // 
             // btnSaveEdit
             // 
-            this.btnSaveEdit.Location = new System.Drawing.Point(113, 293);
+            this.btnSaveEdit.Location = new System.Drawing.Point(113, 314);
             this.btnSaveEdit.Name = "btnSaveEdit";
             this.btnSaveEdit.Size = new System.Drawing.Size(155, 68);
             this.btnSaveEdit.TabIndex = 10;
@@ -139,15 +141,36 @@
             this.lstBoxProjects.ItemHeight = 20;
             this.lstBoxProjects.Location = new System.Drawing.Point(454, 31);
             this.lstBoxProjects.Name = "lstBoxProjects";
-            this.lstBoxProjects.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstBoxProjects.Size = new System.Drawing.Size(317, 244);
             this.lstBoxProjects.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(467, 314);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 82);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Remove project";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.RemoveProject);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(606, 314);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 82);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Add project";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.AddProject);
             // 
             // EditEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lstBoxProjects);
             this.Controls.Add(this.btnSaveEdit);
             this.Controls.Add(this.cmbJob);
@@ -182,5 +205,7 @@
         private System.Windows.Forms.ComboBox cmbJob;
         private System.Windows.Forms.Button btnSaveEdit;
         private System.Windows.Forms.ListBox lstBoxProjects;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

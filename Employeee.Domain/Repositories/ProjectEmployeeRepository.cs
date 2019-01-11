@@ -24,6 +24,7 @@ namespace Employeee.Domain.Repositories
        
         private static List<EmployeeClass> _listOfEmployee;
         private static List<Project> _listOfProjects;
+
         public static void AddDataEmployee()
         {
             _employeeWithListOfProjects = new List<Tuple<EmployeeClass, List<Tuple<Project, int>>>>();
@@ -31,10 +32,12 @@ namespace Employeee.Domain.Repositories
             _listOfProjects = ProjectRepository.GetAllItems();
             var listProject = new List<Tuple<Project, int>>()
             {
-                new Tuple<Project, int>(_listOfProjects.ElementAt(0), 7),
-                new Tuple<Project, int>(_listOfProjects.ElementAt(1), 8)
+                new Tuple<Project, int>(_listOfProjects.ElementAt(0), 7),               
             };
             _employeeWithListOfProjects.Add(new Tuple<EmployeeClass, List<Tuple<Project, int>>>(_listOfEmployee.ElementAt(0), listProject));
+            var listProject1=new  List<Tuple<Project,int>>();
+            listProject1.Add(new Tuple<Project, int>(_listOfProjects.ElementAt(0),12));
+            _employeeWithListOfProjects.Add(new Tuple<EmployeeClass, List<Tuple<Project, int>>>(_listOfEmployee.ElementAt(1),listProject1));
         }
 
         public static void AddDataProject()
@@ -48,6 +51,7 @@ namespace Employeee.Domain.Repositories
                 new Tuple<EmployeeClass, int>(_listOfEmployee.ElementAt(1), 12)
             };
             _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(_listOfProjects.ElementAt(0),listEmployee));
+            
 
         }
         public static void AddNewEmployeeToTheProject(Project project, EmployeeClass employee,
@@ -70,7 +74,6 @@ namespace Employeee.Domain.Repositories
                                 if (tupleEmployee.Item1.OIB == employee.OIB)
                                 {
                                     break;
-                                    found = true;
                                 }
                             }
                            
@@ -149,6 +152,74 @@ namespace Employeee.Domain.Repositories
                 }
             }
         }
+        //delete
+        public static string RemoveProjectFromRelation(Project projectToDelete)
+        {
+            foreach (var project in _projectWithListOfEmployees.ToList())
+            {
+                if (project.Item1 == projectToDelete)
+                {
+                    _projectWithListOfEmployees.Remove(project);
+
+                }
+            }
+
+            foreach (var employee in _employeeWithListOfProjects.ToList())
+            {
+                foreach (var project in employee.Item2.ToList())
+                {
+                    if (project.Item1 == projectToDelete)
+                        employee.Item2.Remove(project);
+                }
+            }
+            ProjectRepository.DeleteProject(projectToDelete);
+            return $"Deleted successfully {projectToDelete.NameOfTheProject} ";
+        }
+
+        //deleteEmployee
+        public static string RemoveEmployee(EmployeeClass selectedEmployee)
+        {
+            var isPossibleToDelete = false;
+            var hasProject = false;
+            foreach (var project in _projectWithListOfEmployees)
+            {
+                foreach (var employee in project.Item2.ToList())
+                {
+                    if (employee.Item1 == selectedEmployee && project.Item2.ToList().Count != 1)
+                    {
+                        project.Item2.Remove(employee);
+                        isPossibleToDelete = true;
+                        //hasProject = true;
+                        //break;
+                    }
+                   
+                }
+            }
+            //if (!hasProject)
+            //{
+            //    EmployeeRepository.DeleteEmployee(selectedEmployee);
+            //    return $"Deleted successfully {selectedEmployee.NameAndSurname()}";
+            //}
+            if (isPossibleToDelete)
+            {
+                foreach (var employee in _employeeWithListOfProjects.ToList())
+                {
+                    if (employee.Item1 == selectedEmployee)
+                    {
+                        _employeeWithListOfProjects.ToList().Remove(employee);
+                    }
+                }
+                EmployeeRepository.DeleteEmployee(selectedEmployee);
+                return $"Deleted successfully {selectedEmployee.NameAndSurname()} ";
+            }
+            else
+            {
+            return $"Can't delete employee because {selectedEmployee.NameAndSurname()}  is the only one on the project";
+            }
+           
+        }
+
+
 
         
     }

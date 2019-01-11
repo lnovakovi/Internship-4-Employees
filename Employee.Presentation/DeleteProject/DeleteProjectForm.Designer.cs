@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lstProjects = new System.Windows.Forms.ListBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // lstProjects
+            // 
+            this.lstProjects.FormattingEnabled = true;
+            this.lstProjects.ItemHeight = 20;
+            this.lstProjects.Location = new System.Drawing.Point(40, 53);
+            this.lstProjects.Name = "lstProjects";
+            this.lstProjects.Size = new System.Drawing.Size(384, 244);
+            this.lstProjects.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(537, 134);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(159, 57);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.DeleteSelectedProject);
+            // 
+            // DeleteProjectForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.lstProjects);
+            this.Name = "DeleteProjectForm";
             this.Text = "DeleteProjectForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox lstProjects;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

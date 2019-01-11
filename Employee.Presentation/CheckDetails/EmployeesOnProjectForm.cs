@@ -28,7 +28,6 @@ namespace Employee.Presentation.CheckDetails
                     }
                 }
             }
-
             
         }
     }

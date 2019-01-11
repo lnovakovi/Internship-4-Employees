@@ -6,6 +6,7 @@ using Employee.Presentation.AddEmployee;
 using Employee.Presentation.AddProject;
 using Employee.Presentation.CheckDetails;
 using Employee.Presentation.DeleteEmployee;
+using Employee.Presentation.DeleteProject;
 using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation.Main
@@ -53,6 +54,12 @@ namespace Employee.Presentation.Main
         {
             var checkProjects = new ProjectDetailForm();
             checkProjects.ShowDialog();
+        }
+
+        private void OpenDeleteProjectForm(object sender, EventArgs e)
+        {
+            var deleteForm = new DeleteProjectForm();
+            deleteForm.ShowDialog();
         }
     }
 }
