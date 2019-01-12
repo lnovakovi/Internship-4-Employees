@@ -9,9 +9,9 @@ namespace Employee.Data.Models
         private string _nameOfTheProject;
 
         public string NameOfTheProject { get => _nameOfTheProject; set => _nameOfTheProject = value.RemoveWhiteSpaces(); }
-        private StateEnum.StateProject  StateOfTheProject{ get; set; }
-        private DateTime StartDate { get; set; }
-        private DateTime EndDate { get; set; }
+        public StateEnum.StateProject  StateOfTheProject{ get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public Project(string name, StateEnum.StateProject stateOfTheProject, DateTime startDate , DateTime endDate)
         {

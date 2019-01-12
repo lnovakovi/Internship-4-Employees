@@ -21,7 +21,7 @@ namespace Employee.Presentation.CheckDetails
             {
                 if (item.Item1.NameOfTheProject == _selectedProject.NameOfTheProject)
                 {
-                    foreach (var  project in item.Item2)
+                    foreach (var project in item.Item2)
                     {
                         if (project.Item1.Job == JobEnum.Job.Programmer)
                         {
