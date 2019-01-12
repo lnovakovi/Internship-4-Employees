@@ -10,10 +10,10 @@ namespace Employee.Data.Models
 
         public string NameOfTheProject { get => _nameOfTheProject; set => _nameOfTheProject = value.RemoveWhiteSpaces(); }
         private StateEnum.StateProject  StateOfTheProject{ get; set; }
-        private DateTime? StartDate { get; set; }
-        private DateTime? EndDate { get; set; }
+        private DateTime StartDate { get; set; }
+        private DateTime EndDate { get; set; }
 
-        public Project(string name, StateEnum.StateProject stateOfTheProject, DateTime? startDate = null, DateTime? endDate= null)
+        public Project(string name, StateEnum.StateProject stateOfTheProject, DateTime startDate , DateTime endDate)
         {
             NameOfTheProject = name;
             StateOfTheProject = stateOfTheProject;
@@ -23,7 +23,7 @@ namespace Employee.Data.Models
 
         public override string ToString()
         {
-            return $"{NameOfTheProject} , {StateOfTheProject} , {StartDate} - {EndDate}";
+            return $"Name: {NameOfTheProject} , State: {StateOfTheProject}, Start: {StartDate} - End: {EndDate}";
         }
     }
 }

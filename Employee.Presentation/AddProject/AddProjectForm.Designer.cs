@@ -84,7 +84,10 @@
             // 
             // datePickerEndDate
             // 
+            this.datePickerEndDate.Checked = false;
             this.datePickerEndDate.Location = new System.Drawing.Point(181, 156);
+            this.datePickerEndDate.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.datePickerEndDate.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
             this.datePickerEndDate.Name = "datePickerEndDate";
             this.datePickerEndDate.Size = new System.Drawing.Size(200, 26);
             this.datePickerEndDate.TabIndex = 5;

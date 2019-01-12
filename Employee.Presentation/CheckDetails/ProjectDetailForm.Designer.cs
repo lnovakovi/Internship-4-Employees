@@ -32,12 +32,16 @@
             this.chkListBoxProject = new System.Windows.Forms.CheckedListBox();
             this.btnCheckEmployees = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.lblProgrammer = new System.Windows.Forms.Label();
+            this.lblAccountant = new System.Windows.Forms.Label();
+            this.lblDeisgner = new System.Windows.Forms.Label();
+            this.lblSecretary = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 20);
             this.label1.TabIndex = 0;
@@ -48,7 +52,7 @@
             this.chkListBoxProject.FormattingEnabled = true;
             this.chkListBoxProject.Location = new System.Drawing.Point(22, 63);
             this.chkListBoxProject.Name = "chkListBoxProject";
-            this.chkListBoxProject.Size = new System.Drawing.Size(480, 277);
+            this.chkListBoxProject.Size = new System.Drawing.Size(710, 277);
             this.chkListBoxProject.TabIndex = 1;
             // 
             // btnCheckEmployees
@@ -70,11 +74,51 @@
             this.button2.Text = "Edit project";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // lblProgrammer
+            // 
+            this.lblProgrammer.AutoSize = true;
+            this.lblProgrammer.Location = new System.Drawing.Point(767, 46);
+            this.lblProgrammer.Name = "lblProgrammer";
+            this.lblProgrammer.Size = new System.Drawing.Size(100, 20);
+            this.lblProgrammer.TabIndex = 4;
+            this.lblProgrammer.Text = "Programmer:";
+            // 
+            // lblAccountant
+            // 
+            this.lblAccountant.AutoSize = true;
+            this.lblAccountant.Location = new System.Drawing.Point(767, 101);
+            this.lblAccountant.Name = "lblAccountant";
+            this.lblAccountant.Size = new System.Drawing.Size(95, 20);
+            this.lblAccountant.TabIndex = 5;
+            this.lblAccountant.Text = "Accountant:";
+            // 
+            // lblDeisgner
+            // 
+            this.lblDeisgner.AutoSize = true;
+            this.lblDeisgner.Location = new System.Drawing.Point(767, 153);
+            this.lblDeisgner.Name = "lblDeisgner";
+            this.lblDeisgner.Size = new System.Drawing.Size(77, 20);
+            this.lblDeisgner.TabIndex = 6;
+            this.lblDeisgner.Text = "Designer:";
+            // 
+            // lblSecretary
+            // 
+            this.lblSecretary.AutoSize = true;
+            this.lblSecretary.Location = new System.Drawing.Point(767, 204);
+            this.lblSecretary.Name = "lblSecretary";
+            this.lblSecretary.Size = new System.Drawing.Size(81, 20);
+            this.lblSecretary.TabIndex = 7;
+            this.lblSecretary.Text = "Secretary:";
+            // 
             // ProjectDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1048, 450);
+            this.Controls.Add(this.lblSecretary);
+            this.Controls.Add(this.lblDeisgner);
+            this.Controls.Add(this.lblAccountant);
+            this.Controls.Add(this.lblProgrammer);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCheckEmployees);
             this.Controls.Add(this.chkListBoxProject);
@@ -93,5 +137,9 @@
         private System.Windows.Forms.CheckedListBox chkListBoxProject;
         private System.Windows.Forms.Button btnCheckEmployees;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblProgrammer;
+        private System.Windows.Forms.Label lblAccountant;
+        private System.Windows.Forms.Label lblDeisgner;
+        private System.Windows.Forms.Label lblSecretary;
     }
 }

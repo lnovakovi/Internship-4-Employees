@@ -28,8 +28,16 @@ namespace Employee.Presentation.CheckDetails
         private void OpenFormCheckProjectEmployees(object sender, System.EventArgs e)
         {
             var selectedProject = chkListBoxProject.SelectedItem as Project;
-             var checkForm = new EmployeesOnProjectForm(selectedProject);
-            checkForm.ShowDialog();
+            if (selectedProject != null)
+            {
+                var checkForm = new EmployeesOnProjectForm(selectedProject);
+                checkForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You haven't chosen project.");
+            }
+            
         }
     }
 }

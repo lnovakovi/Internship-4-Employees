@@ -37,7 +37,7 @@
             this.lstBoxProjects.ItemHeight = 20;
             this.lstBoxProjects.Location = new System.Drawing.Point(55, 50);
             this.lstBoxProjects.Name = "lstBoxProjects";
-            this.lstBoxProjects.Size = new System.Drawing.Size(564, 284);
+            this.lstBoxProjects.Size = new System.Drawing.Size(588, 284);
             this.lstBoxProjects.TabIndex = 0;
             // 
             // CheckEmployeesProjects

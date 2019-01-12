@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Employee.Data.Models;
+using Employee.Infrastructure.Extensions;
 using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation.Pop_up
@@ -19,10 +20,20 @@ namespace Employee.Presentation.Pop_up
 
         private void SaveWorkingHours(object sender, EventArgs e)
         {
-            ProjectEmployeeRepository.AddNewEmployeeToTheProject(_project, _employee,
-                int.Parse(txtWorkingHours.Text));
-            ProjectEmployeeRepository.AddNewProjectToEmployee(_employee,_project,int.Parse(txtWorkingHours.Text));
-           Close();
+            var input = txtWorkingHours.Text;
+            if (!input.CheckIfEmpty() && input.TryParseInt() && int.Parse(input) != 0)
+            {
+                ProjectEmployeeRepository.AddNewEmployeeToTheProject(_project, _employee,
+                    int.Parse(input));
+                ProjectEmployeeRepository.AddNewProjectToEmployee(_employee, _project, int.Parse(input));
+                Close();
+            }
+            else
+            {
+                return;
+            }
+            
+           
         }
     }
 }

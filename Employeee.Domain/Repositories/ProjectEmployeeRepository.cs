@@ -75,20 +75,16 @@ namespace Employeee.Domain.Repositories
                                 {
                                     break;
                                 }
-                            }
-                           
+                            }                          
                         }
                     }
                 }
-
                 if (!found)
                 {
                     var list = new List<Tuple<EmployeeClass, int>>();
                     list.Add(new Tuple<EmployeeClass, int>(employee, numberOfWorkingHours));
                    _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(project,list));                   
-
                 }
-
             }
             else
             {
@@ -97,9 +93,7 @@ namespace Employeee.Domain.Repositories
                     new Tuple<EmployeeClass, int>(employee, numberOfWorkingHours)
                 };
                 _projectWithListOfEmployees.Add(new Tuple<Project, List<Tuple<EmployeeClass, int>>>(project, list));
-            }
-
-           
+            }          
         }
 
         public static void AddNewProjectToEmployee(EmployeeClass employee, Project project, int numberOfWorkingHours)
@@ -136,8 +130,7 @@ namespace Employeee.Domain.Repositories
                 };
                     _employeeWithListOfProjects.Add(
                         new Tuple<EmployeeClass, List<Tuple<Project, int>>>(employee, list));
-            }
-            
+            }           
         }
 
         public static void BeforeAddingProjects(string oib, Project project,int numberOfWorkingHours)
@@ -160,10 +153,8 @@ namespace Employeee.Domain.Repositories
                 if (project.Item1 == projectToDelete)
                 {
                     _projectWithListOfEmployees.Remove(project);
-
                 }
             }
-
             foreach (var employee in _employeeWithListOfProjects.ToList())
             {
                 foreach (var project in employee.Item2.ToList())
@@ -180,7 +171,7 @@ namespace Employeee.Domain.Repositories
         public static string RemoveEmployee(EmployeeClass selectedEmployee)
         {
             var isPossibleToDelete = false;
-            var hasProject = false;
+            var hasProject = false; 
             foreach (var project in _projectWithListOfEmployees)
             {
                 foreach (var employee in project.Item2.ToList())
@@ -191,8 +182,7 @@ namespace Employeee.Domain.Repositories
                         isPossibleToDelete = true;
                         //hasProject = true;
                         //break;
-                    }
-                   
+                    }                  
                 }
             }
             //if (!hasProject)
@@ -219,9 +209,31 @@ namespace Employeee.Domain.Repositories
            
         }
 
+        public static int CountHoursOnProjects(EmployeeClass employee)
+        {
+            var numHours = 0;
+            foreach (var relation in _employeeWithListOfProjects)
+            {
+                if (relation.Item1.Equals(employee))
+                {
+                    foreach (var projet in relation.Item2)
+                    {
+                        numHours += projet.Item2;
+                    }
+                }
+            }
+            return numHours;
+        }
 
-
-        
+        public static bool CheckIfInRelation(EmployeeClass employee)
+        {
+            foreach (var relation in _employeeWithListOfProjects)
+            {
+                if (relation.Item1.OIB == employee.OIB)
+                    return true;
+            }
+            return false;
+        }       
     }
 }
 ;

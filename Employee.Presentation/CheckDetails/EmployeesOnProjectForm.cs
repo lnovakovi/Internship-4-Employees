@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Employee.Data.Enums;
 using Employee.Data.Models;
 using Employeee.Domain.Repositories;
 
@@ -14,8 +15,7 @@ namespace Employee.Presentation.CheckDetails
         }
 
         private void ShowEmployees(object sender, System.EventArgs e)
-        {
-            var br = 0;
+        {           
             var listToShow = ProjectEmployeeRepository.GetAllData();
             foreach (var item in listToShow)
             {
@@ -23,12 +23,34 @@ namespace Employee.Presentation.CheckDetails
                 {
                     foreach (var  project in item.Item2)
                     {
-                        lstBoxEmployees.Items.Add(project.Item1.NameAndSurname() + " " + project.Item2 + "hours");
-                        br += 1;
+                        if (project.Item1.Job == JobEnum.Job.Programmer)
+                        {
+                            lstBoxProgrammers.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
+                            Programers.Text = $"Programers: {lstBoxProgrammers.Items.Count.ToString()}";
+                        }
+                        else if (project.Item1.Job == JobEnum.Job.Designer)
+                        {
+                            lstBoxDesigner.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
+                            lblDesigner.Text = $"Designers: {lstBoxDesigner.Items.Count.ToString()}";
+                        }
+                        else if (project.Item1.Job == JobEnum.Job.Accountant)
+                        {
+                            lstBoxAccountant.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
+                            lblAccountant.Text = $"Accountants: {lstBoxAccountant.Items.Count.ToString()} ";
+                        }
+                        else
+                        {
+                            lstBoxSecretary.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
+                            lblSecretary.Text = $"Secretary: {lstBoxSecretary.Items.Count.ToString()}";
+                        }
                     }
                 }
-            }
-            
+            }          
+        }
+
+        private void label2_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

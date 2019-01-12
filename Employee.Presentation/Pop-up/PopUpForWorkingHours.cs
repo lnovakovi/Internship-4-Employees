@@ -10,7 +10,7 @@ namespace Employee.Presentation.Pop_up
     {
         private string _oib;
         private Project _project;
-        private object _employee;
+        
         public PopUpForWorkingHours(Project project,string oib)
         {
             _oib = oib;
@@ -20,10 +20,10 @@ namespace Employee.Presentation.Pop_up
 
         }
 
-        //need to check if number is right 
         private void Close(object sender, EventArgs e)
         {
-            if (txtWorkingHours.Text.CheckIfNumber() && !txtWorkingHours.Text.CheckIfEmpty())
+            var input = txtWorkingHours.Text;
+            if (input.TryParseInt() && !input.CheckIfEmpty() && int.Parse(input) !=0 )
             {
                 ProjectEmployeeRepository.BeforeAddingProjects(_oib, _project, int.Parse(txtWorkingHours.Text));
                 Close();

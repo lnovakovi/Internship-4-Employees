@@ -47,9 +47,9 @@ namespace Employee.Presentation.AddEmployee
         }
         private void SaveEmployee(object sender, EventArgs e)
         {
-            //always wrong input
+            
             if (!txtEmployeeName.ToString().CheckIfEmpty() && !txtEmployeeSurname.ToString().CheckIfEmpty() &&
-                !txtOIB.ToString().CheckIfNumber()  && cmbJob.SelectedItem != null)
+                txtOIB.Text.TryParseInt()  && cmbJob.SelectedItem != null)
             {           
                 MessageBox.Show(EmployeeRepository.AddEmployee(txtEmployeeName.Text, txtEmployeeSurname.Text, txtOIB.Text, dateEmployeeBirth.Value, cmbJob.SelectedItem.ToString()));
                 var selectedProjects = lstBoxProjects.SelectedItems;
