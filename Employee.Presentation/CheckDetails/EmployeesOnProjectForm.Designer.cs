@@ -118,7 +118,7 @@
             this.lblDesigner.Size = new System.Drawing.Size(81, 20);
             this.lblDesigner.TabIndex = 8;
             this.lblDesigner.Text = "Designers";
-            this.lblDesigner.Click += new System.EventHandler(this.label2_Click);
+            
             // 
             // EmployeesOnProjectForm
             // 

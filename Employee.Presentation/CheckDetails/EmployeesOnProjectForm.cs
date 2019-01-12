@@ -47,10 +47,5 @@ namespace Employee.Presentation.CheckDetails
                 }
             }          
         }
-
-        private void label2_Click(object sender, System.EventArgs e)
-        {
-
-        }
     }
 }

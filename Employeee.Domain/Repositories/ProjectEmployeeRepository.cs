@@ -145,9 +145,9 @@ namespace Employeee.Domain.Repositories
                 }
             }
         }
-        //delete
         public static string RemoveProjectFromRelation(Project projectToDelete)
         {
+            //delete from relation project-employees
             foreach (var project in _projectWithListOfEmployees.ToList())
             {
                 if (project.Item1 == projectToDelete)
@@ -155,12 +155,22 @@ namespace Employeee.Domain.Repositories
                     _projectWithListOfEmployees.Remove(project);
                 }
             }
+            //delte from relation employee-project
             foreach (var employee in _employeeWithListOfProjects.ToList())
             {
                 foreach (var project in employee.Item2.ToList())
                 {
                     if (project.Item1 == projectToDelete)
-                        employee.Item2.Remove(project);
+                    {
+                        if (employee.Item2.ToList().Count > 1)// if projectToDelete is the only employee's project,delete the whole relation
+                        {
+                            employee.Item2.Remove(project);
+                        }
+                        else
+                        {
+                            _employeeWithListOfProjects.Remove(employee); 
+                        }
+                    }                      
                 }
             }
             ProjectRepository.DeleteProject(projectToDelete);
@@ -170,43 +180,36 @@ namespace Employeee.Domain.Repositories
         //deleteEmployee
         public static string RemoveEmployee(EmployeeClass selectedEmployee)
         {
-            var isPossibleToDelete = false;
-            var hasProject = false; 
-            foreach (var project in _projectWithListOfEmployees)
+            if (CheckIfInRelation(selectedEmployee))
             {
-                foreach (var employee in project.Item2.ToList())
+                foreach (var project in _projectWithListOfEmployees)
                 {
-                    if (employee.Item1 == selectedEmployee && project.Item2.ToList().Count != 1)
+                    foreach (var employee in project.Item2.ToList())
                     {
-                        project.Item2.Remove(employee);
-                        isPossibleToDelete = true;
-                        //hasProject = true;
-                        //break;
-                    }                  
-                }
-            }
-            //if (!hasProject)
-            //{
-            //    EmployeeRepository.DeleteEmployee(selectedEmployee);
-            //    return $"Deleted successfully {selectedEmployee.NameAndSurname()}";
-            //}
-            if (isPossibleToDelete)
-            {
-                foreach (var employee in _employeeWithListOfProjects.ToList())
-                {
-                    if (employee.Item1 == selectedEmployee)
-                    {
-                        _employeeWithListOfProjects.ToList().Remove(employee);
+                        if (employee.Item1 == selectedEmployee && (project.Item2.ToList().Count > 1))
+                        { //delete from relation project-employees
+                            project.Item2.Remove(employee);
+                            //now delete from relation employee-projects
+                            foreach (var relation in _employeeWithListOfProjects.ToList())
+                            {
+                                if (relation.Item1 == selectedEmployee)
+                                {
+                                    _employeeWithListOfProjects.ToList().Remove(relation);
+                                    EmployeeRepository.DeleteEmployee(selectedEmployee);
+                                    return $"Deleted successfully {selectedEmployee.NameAndSurname()} ";
+                                }
+                            }                          
+                        }
                     }
                 }
-                EmployeeRepository.DeleteEmployee(selectedEmployee);
-                return $"Deleted successfully {selectedEmployee.NameAndSurname()} ";
             }
             else
             {
-            return $"Can't delete employee because {selectedEmployee.NameAndSurname()}  is the only one on the project";
+                EmployeeRepository.DeleteEmployee(selectedEmployee);
+                return $"Deleted successfully {selectedEmployee.NameAndSurname()}";
             }
-           
+
+            return $"Can't delete {selectedEmployee.NameAndSurname()} because he/she is the only one on the project";
         }
 
         public static int CountHoursOnProjects(EmployeeClass employee)

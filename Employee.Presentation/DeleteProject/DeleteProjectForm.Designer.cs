@@ -38,12 +38,12 @@
             this.lstProjects.ItemHeight = 20;
             this.lstProjects.Location = new System.Drawing.Point(40, 53);
             this.lstProjects.Name = "lstProjects";
-            this.lstProjects.Size = new System.Drawing.Size(384, 244);
+            this.lstProjects.Size = new System.Drawing.Size(547, 244);
             this.lstProjects.TabIndex = 0;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(537, 134);
+            this.btnDelete.Location = new System.Drawing.Point(616, 139);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(159, 57);
             this.btnDelete.TabIndex = 1;
