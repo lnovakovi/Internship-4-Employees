@@ -17,7 +17,6 @@ namespace Employee.Presentation.Pop_up
             _project= project;
             InitializeComponent();
             labelInstruction.Text = $@"Enter working hours for {_project.NameOfTheProject}";
-
         }
 
         private void Close(object sender, EventArgs e)
@@ -32,8 +31,7 @@ namespace Employee.Presentation.Pop_up
             {
                 MessageBox.Show("Wrong input");
                 return;
-            }
-            
+            }          
         }
     }
 }

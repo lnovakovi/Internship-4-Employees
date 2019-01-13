@@ -97,7 +97,7 @@ namespace Employee.Presentation.EditEmployee
                         if (ProjectEmployeeRepository.GetNumberOfEmployees(project) > 1)
                         {
                             ProjectEmployeeRepository.RemoveProjectFromRelationEmployeeProject(project);
-                            ProjectEmployeeRepository.RemoveProjectFromRelation(project);
+                            ProjectEmployeeRepository.EditRelationProjectEmployee(_employee);
                             lstBoxProjects.Items.Remove(projectToDelete);
                         }
                         else
