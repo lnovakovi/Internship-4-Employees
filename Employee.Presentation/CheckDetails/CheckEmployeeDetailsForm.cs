@@ -12,10 +12,9 @@ namespace Employee.Presentation.CheckDetails
     public partial class CheckEmployeeDetailsForm : Form
     {
         
-        private List<EmployeeClass> _listOfEmployees;
+        private readonly List<EmployeeClass> _listOfEmployees;
         public CheckEmployeeDetailsForm()
         {
-
             _listOfEmployees = EmployeeRepository.AllItems();
             InitializeComponent();
         }
@@ -39,40 +38,36 @@ namespace Employee.Presentation.CheckDetails
         private void ChangeColor(object sender, EventArgs e)
         {                
             var listProjects = ProjectEmployeeRepository.GetAllItems();
-            if (lstBoxEmployee.SelectedIndex != -1)
+            if (lstBoxEmployee.SelectedIndex == -1) return;
+            var selectedItem = _listOfEmployees.ElementAt(lstBoxEmployee.SelectedIndex);
+            if (ProjectEmployeeRepository.CheckIfInRelation(selectedItem))
             {
-                var selectedItem = _listOfEmployees.ElementAt(lstBoxEmployee.SelectedIndex);
-                if (ProjectEmployeeRepository.CheckIfInRelation(selectedItem))
+                foreach (var item in listProjects)
                 {
-                    foreach (var item in listProjects)
+                    if (selectedItem != item.Item1) continue;
+                    var counterHours = ProjectEmployeeRepository.CountHoursOnProjects(selectedItem);
+                    if (counterHours < 30 && counterHours > 0)
                     {
-                        if (selectedItem == item.Item1)
-                        {
-                            var counterHours = ProjectEmployeeRepository.CountHoursOnProjects(selectedItem);
-                            if (counterHours < 30 && counterHours > 0)
-                            {
-                                btnShowColor.BackColor = Color.Yellow;
-                                btnShowColor.Text = $@"{counterHours} hours";
-                            }
-                            else if (counterHours >= 30 && counterHours <= 40)
-                            {
-                                btnShowColor.BackColor = Color.Green;
-                                btnShowColor.Text = $@"{counterHours} hours";
-                            }
-                            else //if (counterHours > 40)
-                            {
-                                btnShowColor.BackColor = Color.Red;
-                                btnShowColor.Text = $@"{counterHours} hours";
-                            }
-                        }
-                    }                  
-                }
-                else
-                {
-                    btnShowColor.BackColor = Color.White;
-                    btnShowColor.Text = "";
-                }
-            }          
+                        btnShowColor.BackColor = Color.Yellow;
+                        btnShowColor.Text = $@"{counterHours} hours";
+                    }
+                    else if (counterHours >= 30 && counterHours <= 40)
+                    {
+                        btnShowColor.BackColor = Color.Green;
+                        btnShowColor.Text = $@"{counterHours} hours";
+                    }
+                    else //if (counterHours > 40)
+                    {
+                        btnShowColor.BackColor = Color.Red;
+                        btnShowColor.Text = $@"{counterHours} hours";
+                    }
+                }                  
+            }
+            else
+            {
+                btnShowColor.BackColor = Color.White;
+                btnShowColor.Text = "";
+            }
         }
 
         private void CheckEmployeeDetailsForm_Load(object sender, EventArgs e)

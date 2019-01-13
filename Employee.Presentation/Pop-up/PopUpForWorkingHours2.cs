@@ -4,18 +4,18 @@ using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
 using Employeee.Domain.Repositories;
 
-namespace Employee.Presentation.Pop_up
+namespace Employee.Presentation
 {
     public partial class PopUpForWorkingHours2 : Form
     {
-        private EmployeeClass _employee;
-        private Project _project;
+        private readonly EmployeeClass _employee;
+        private readonly Project _project;
         public PopUpForWorkingHours2(EmployeeClass employee, Project project)
         {
             _employee = employee;
             _project = project;
             InitializeComponent();
-            labelInstruction.Text = $"Enter working hours for {employee}";
+            labelInstruction.Text = $@"Enter working hours for {employee.NameAndSurname()}";
         }
 
         private void SaveWorkingHours(object sender, EventArgs e)
@@ -30,10 +30,8 @@ namespace Employee.Presentation.Pop_up
             }
             else
             {
-                return;
+                MessageBox.Show(@"Wrong input");
             }
-            
-           
         }
     }
 }

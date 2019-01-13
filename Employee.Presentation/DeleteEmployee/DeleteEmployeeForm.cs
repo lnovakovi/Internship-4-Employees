@@ -8,14 +8,13 @@ namespace Employee.Presentation.DeleteEmployee
 {
     public partial class DeleteEmployeeForm : Form
     {
-        private List<EmployeeClass> _listOfEmployees;
+        private readonly List<EmployeeClass> _listOfEmployees;
         
         public DeleteEmployeeForm()
         {
             InitializeComponent();
             _listOfEmployees = EmployeeRepository.AllItems();
-            RefreshData();
-            
+            RefreshData();        
         }
 
         private void RefreshData()
@@ -28,11 +27,14 @@ namespace Employee.Presentation.DeleteEmployee
         }
         private void DeleteEmployee(object sender, System.EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(@"Are you sure?", @"WARNING", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(@"Are you sure?", @"WARNING", MessageBoxButtons.YesNo);
             if (dialogResult==DialogResult.Yes)
             {
-                var selectedEmployee = chkListBoxEmployee.SelectedItem as EmployeeClass;
-                MessageBox.Show(ProjectEmployeeRepository.RemoveEmployee(selectedEmployee));
+                if (chkListBoxEmployee.SelectedIndex > -1)
+                {
+                    var selectedEmployee = chkListBoxEmployee.SelectedItem as EmployeeClass;
+                    MessageBox.Show(ProjectEmployeeRepository.RemoveEmployee(selectedEmployee));
+                }               
                 Close();
             }
             else

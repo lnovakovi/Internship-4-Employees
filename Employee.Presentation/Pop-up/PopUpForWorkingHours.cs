@@ -4,12 +4,12 @@ using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
 using Employeee.Domain.Repositories;
 
-namespace Employee.Presentation.Pop_up
+namespace Employee.Presentation
 {
     public partial class PopUpForWorkingHours : Form
     {
-        private string _oib;
-        private Project _project;
+        private readonly string _oib;
+        private readonly Project _project;
         
         public PopUpForWorkingHours(Project project,string oib)
         {
@@ -29,8 +29,7 @@ namespace Employee.Presentation.Pop_up
             }
             else
             {
-                MessageBox.Show("Wrong input");
-                return;
+                MessageBox.Show(@"Wrong input");
             }          
         }
     }

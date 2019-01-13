@@ -94,12 +94,6 @@
     <Compile Include="DeleteProject\DeleteProjectForm.Designer.cs">
       <DependentUpon>DeleteProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditEmployee\AddProjectToEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditEmployee\AddProjectToEmployee.Designer.cs">
-      <DependentUpon>AddProjectToEmployee.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditEmployee\EditEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +111,12 @@
     </Compile>
     <Compile Include="Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pop-up\ChangeWorkingHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pop-up\ChangeWorkingHours.Designer.cs">
+      <DependentUpon>ChangeWorkingHours.cs</DependentUpon>
     </Compile>
     <Compile Include="Pop-up\PopUpForWorkingHours.cs">
       <SubType>Form</SubType>
@@ -156,9 +156,6 @@
     <EmbeddedResource Include="DeleteProject\DeleteProjectForm.resx">
       <DependentUpon>DeleteProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditEmployee\AddProjectToEmployee.resx">
-      <DependentUpon>AddProjectToEmployee.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditEmployee\EditEmployeeForm.resx">
       <DependentUpon>EditEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pop-up\ChangeWorkingHours.resx">
+      <DependentUpon>ChangeWorkingHours.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pop-up\PopUpForWorkingHours.resx">
       <DependentUpon>PopUpForWorkingHours.cs</DependentUpon>

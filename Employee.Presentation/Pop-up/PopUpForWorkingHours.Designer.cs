@@ -1,4 +1,4 @@
-﻿namespace Employee.Presentation.Pop_up
+﻿namespace Employee.Presentation
 {
     partial class PopUpForWorkingHours
     {

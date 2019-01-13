@@ -67,7 +67,7 @@
             // btnShowColor
             // 
             this.btnShowColor.BackColor = System.Drawing.Color.White;
-            this.btnShowColor.Location = new System.Drawing.Point(956, 54);
+            this.btnShowColor.Location = new System.Drawing.Point(562, 38);
             this.btnShowColor.Name = "btnShowColor";
             this.btnShowColor.Size = new System.Drawing.Size(144, 57);
             this.btnShowColor.TabIndex = 5;
@@ -79,7 +79,7 @@
             this.lstBoxEmployee.ItemHeight = 20;
             this.lstBoxEmployee.Location = new System.Drawing.Point(31, 38);
             this.lstBoxEmployee.Name = "lstBoxEmployee";
-            this.lstBoxEmployee.Size = new System.Drawing.Size(861, 384);
+            this.lstBoxEmployee.Size = new System.Drawing.Size(525, 384);
             this.lstBoxEmployee.TabIndex = 6;
             this.lstBoxEmployee.SelectedIndexChanged += new System.EventHandler(this.ChangeColor);
             // 
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 510);
+            this.ClientSize = new System.Drawing.Size(796, 554);
             this.Controls.Add(this.lstBoxEmployee);
             this.Controls.Add(this.btnShowColor);
             this.Controls.Add(this.btnCheckProjects);

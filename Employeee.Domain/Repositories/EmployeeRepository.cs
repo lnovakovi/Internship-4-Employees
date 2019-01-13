@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Employee.Data.Enums;
 using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
@@ -30,7 +29,7 @@ namespace Employeee.Domain.Repositories
 
         public static bool CheckAge(DateTime choosedDate) => (Now - choosedDate).Days / 365 > 18;
 
-        public static bool CheckOIB(string OIB)
+        public static bool CheckOib(string oib)
         {
             var counter = 0;
             if (_listOfEmployees == null)
@@ -38,19 +37,16 @@ namespace Employeee.Domain.Repositories
                 
             foreach (var employee in _listOfEmployees)
             {
-                if (employee.OIB == OIB.RemoveAllTheWhiteSpaces())
+                if (employee.OIB == oib.RemoveAllTheWhiteSpaces())
                     counter += 1;
             }
             return counter == 0;
         }
-        public static string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)  
+        public static string AddEmployee(string name,string surname,string oib,DateTime dateOfBirth, string position)  
         {
-            if (CheckOIB(OIB.RemoveAllTheWhiteSpaces()) && CheckAge(dateOfBirth))
-            {
-                _listOfEmployees.Add(new EmployeeClass(name, surname, OIB, dateOfBirth, (JobEnum.Job)Enum.Parse(typeof(JobEnum.Job), position)));
-                return "OK";
-            }
-            return "Fail";
+            if (!CheckOib(oib.RemoveAllTheWhiteSpaces()) || !CheckAge(dateOfBirth)) return "Fail";
+            _listOfEmployees.Add(new EmployeeClass(name, surname, oib, dateOfBirth, (JobEnum.Job)Enum.Parse(typeof(JobEnum.Job), position)));
+            return "OK";
         }
 
         public static bool EditEmployee(EmployeeClass itemForEdit)
@@ -58,11 +54,9 @@ namespace Employeee.Domain.Repositories
             EmployeeClass itemToDelete = null;
             foreach (var todoItem in AllItems())
             {
-                if (todoItem.OIB == itemForEdit.OIB)
-                {
-                    itemToDelete = todoItem;
-                    break;
-                }
+                if (todoItem.OIB != itemForEdit.OIB) continue;
+                itemToDelete = todoItem;
+                break;
             }
             if (itemToDelete == null)
                 return false;
@@ -74,11 +68,34 @@ namespace Employeee.Domain.Repositories
 
         public static void DeleteEmployee(EmployeeClass selectedEmployee)
         {
-            foreach (var employee in _listOfEmployees.ToList())
+            _listOfEmployees.Remove(selectedEmployee);
+        }
+
+        public static List<EmployeeClass> EmployeesNotOnProject(Project project)
+        {
+            var list=new List<EmployeeClass>();
+            var listWithEmp = EmployeesOnTheProject(project);
+            foreach (var employee in _listOfEmployees)
             {
-                if (employee == selectedEmployee)
-                    _listOfEmployees.Remove(employee);
+                if(listWithEmp.Contains(employee)) continue;
+                list.Add(employee);
             }
+            return list;
+        }
+
+        public static List<EmployeeClass> EmployeesOnTheProject(Project project)
+        {
+            var list = new List<EmployeeClass>();
+            var listWithProjects = ProjectEmployeeRepository.GetAllItems();
+            foreach (var relation in listWithProjects)
+            {
+                foreach (var tupleProject in relation.Item2)
+                {
+                    if (tupleProject.Item1 != project) continue;
+                    list.Add(relation.Item1);                    
+                }
+            }
+            return list;
         }
     }
 }

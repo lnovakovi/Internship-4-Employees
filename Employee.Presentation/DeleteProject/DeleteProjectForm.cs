@@ -22,16 +22,15 @@ namespace Employee.Presentation.DeleteProject
                 lstProjects.Items.Add(project);
             }
         }
-        //not working right 
         private void DeleteSelectedProject(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(@"Are you sure?", @"WARNING", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(@"Are you sure?", @"WARNING", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             { 
                 MessageBox.Show(ProjectEmployeeRepository.RemoveProjectFromRelation(lstProjects.SelectedItem as Project));
                 Close();
             }
-            else if (dialogResult == DialogResult.No)
+            else
             {
                 Close();
             }

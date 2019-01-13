@@ -19,33 +19,30 @@ namespace Employee.Presentation.CheckDetails
             var listToShow = ProjectEmployeeRepository.GetAllData();
             foreach (var item in listToShow)
             {
-                if (item.Item1.NameOfTheProject == _selectedProject.NameOfTheProject)
+                if (item.Item1.NameOfTheProject != _selectedProject.NameOfTheProject) continue;
+                foreach (var project in item.Item2)
                 {
-                    foreach (var project in item.Item2)
+                    switch (project.Item1.Job)
                     {
-                        if (project.Item1.Job == JobEnum.Job.Programmer)
-                        {
+                        case JobEnum.Job.Programmer:
                             lstBoxProgrammers.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
-                            Programers.Text = $"Programers: {lstBoxProgrammers.Items.Count.ToString()}";
-                        }
-                        else if (project.Item1.Job == JobEnum.Job.Designer)
-                        {
+                            Programers.Text = $@"Programers: {lstBoxProgrammers.Items.Count.ToString()}";
+                            break;
+                        case JobEnum.Job.Designer:
                             lstBoxDesigner.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
-                            lblDesigner.Text = $"Designers: {lstBoxDesigner.Items.Count.ToString()}";
-                        }
-                        else if (project.Item1.Job == JobEnum.Job.Accountant)
-                        {
+                            lblDesigner.Text = $@"Designers: {lstBoxDesigner.Items.Count.ToString()}";
+                            break;
+                        case JobEnum.Job.Accountant:
                             lstBoxAccountant.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
-                            lblAccountant.Text = $"Accountants: {lstBoxAccountant.Items.Count.ToString()} ";
-                        }
-                        else
-                        {
+                            lblAccountant.Text = $@"Accountants: {lstBoxAccountant.Items.Count.ToString()} ";
+                            break;
+                        case JobEnum.Job.Secretary:
                             lstBoxSecretary.Items.Add($"{project.Item1.NameAndSurname()} - {project.Item2} hours");
-                            lblSecretary.Text = $"Secretary: {lstBoxSecretary.Items.Count.ToString()}";
-                        }
+                            lblSecretary.Text = $@"Secretary: {lstBoxSecretary.Items.Count.ToString()}";
+                            break;
                     }
                 }
-            }          
+            }
         }
     }
 }

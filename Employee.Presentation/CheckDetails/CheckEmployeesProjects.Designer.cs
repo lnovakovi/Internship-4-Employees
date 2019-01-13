@@ -43,7 +43,7 @@
             this.lstBoxFinished.ItemHeight = 20;
             this.lstBoxFinished.Location = new System.Drawing.Point(55, 50);
             this.lstBoxFinished.Name = "lstBoxFinished";
-            this.lstBoxFinished.Size = new System.Drawing.Size(173, 304);
+            this.lstBoxFinished.Size = new System.Drawing.Size(174, 304);
             this.lstBoxFinished.TabIndex = 0;
             // 
             // lblFinished

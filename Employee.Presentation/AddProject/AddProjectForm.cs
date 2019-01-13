@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Employee.Data.Enums;
 using Employee.Data.Models;
 using Employee.Infrastructure.Extensions;
-using Employee.Presentation.Pop_up;
 using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation.AddProject
@@ -43,21 +42,23 @@ namespace Employee.Presentation.AddProject
         private void SaveProject(object sender, EventArgs e)
         {
 
-            if (!txtProjectName.ToString().CheckIfEmpty() && cmbState.SelectedItem != null && ProjectRepository.CheckName(txtProjectName.Text))
+            if (!txtProjectName.ToString().CheckIfEmpty() && cmbState.SelectedItem != null &&
+                ProjectRepository.CheckName(txtProjectName.Text))
             {
-               
-                var project = new Project(txtProjectName.Text, (StateEnum.StateProject)Enum.Parse(typeof(StateEnum.StateProject), cmbState.SelectedItem.ToString()), datePickerStartDate.Value, datePickerEndDate.Value);
-                ProjectRepository.AddNewProject(project);
-                var selectedEmployees = lstBoxEmployee.SelectedItems;
-                foreach (var employee in selectedEmployees)
+                var project = new Project(txtProjectName.Text,
+                    (StateEnum.StateProject) Enum.Parse(typeof(StateEnum.StateProject),
+                        cmbState.SelectedItem.ToString()), datePickerStartDate.Value, datePickerEndDate.Value);
+                MessageBox.Show(ProjectRepository.AddNewProject(project));
+                if (lstBoxEmployee.SelectedIndex > -1)
                 {
-                    var popUp = new PopUpForWorkingHours2(employee as EmployeeClass,project);
-                    popUp.ShowDialog();
+                    var selectedEmployees = lstBoxEmployee.SelectedItems;
+                    foreach (var employee in selectedEmployees)
+                    {
+                        var popUp = new PopUpForWorkingHours2(employee as EmployeeClass, project);
+                        popUp.ShowDialog();
+                    }
                 }
             }
-
-            
-           
             Close();
         }
     }
