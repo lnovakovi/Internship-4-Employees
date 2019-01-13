@@ -21,7 +21,7 @@ namespace Employee.Presentation
         private void SaveWorkingHours(object sender, EventArgs e)
         {
             var input = txtWorkingHours.Text;
-            if (!input.CheckIfEmpty() && input.TryParseInt() && int.Parse(input) != 0)
+            if (!input.CheckIfEmpty() && input.TryParseInt() && int.Parse(input) > 0)
             {
                 ProjectEmployeeRepository.AddNewEmployeeToTheProject(_project, _employee,
                     int.Parse(input));

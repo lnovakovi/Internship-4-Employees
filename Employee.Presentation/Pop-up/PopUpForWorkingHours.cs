@@ -22,7 +22,7 @@ namespace Employee.Presentation
         private void Close(object sender, EventArgs e)
         {
             var input = txtWorkingHours.Text;
-            if (input.TryParseInt() && !input.CheckIfEmpty() && int.Parse(input) !=0 )
+            if (input.TryParseInt() && !input.CheckIfEmpty() && int.Parse(input) >0 )
             {
                 ProjectEmployeeRepository.BeforeAddingProjects(_oib, _project, int.Parse(txtWorkingHours.Text));
                 Close();

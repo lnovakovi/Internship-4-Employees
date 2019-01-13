@@ -21,7 +21,7 @@ namespace Employee.Presentation
         private void OK_click(object sender, EventArgs e)
         {
             var input = txtHours.Text;
-            if (input.TryParseInt() && !input.CheckIfEmpty() && int.Parse(input) != 0)
+            if (input.TryParseInt() && !input.CheckIfEmpty() && int.Parse(input) > 0)
             {
                 ProjectEmployeeRepository.EditRelationProjectEmployee(int.Parse(input),_project,_emp);
                 ProjectEmployeeRepository.EditRelationEmployeeProject(int.Parse(input),_project,_emp);
