@@ -31,6 +31,7 @@ namespace Employee.Presentation.Pop_up
             else
             {
                 MessageBox.Show("Wrong input");
+                return;
             }
             
         }
