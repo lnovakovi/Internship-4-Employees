@@ -7,7 +7,7 @@ namespace Employee.Data.Models
     public class EmployeeClass
     {
         private string _name;
-        public string _surname;
+        private string _surname;
         private string _oIB;
 
         public string Name
@@ -19,7 +19,7 @@ namespace Employee.Data.Models
                 _name = _name.CapitalizeEachWord();
             }
         }
-        private string Surname
+        public string Surname
         {
             get => _surname;
             set

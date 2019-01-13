@@ -87,7 +87,6 @@
             this.label5.Size = new System.Drawing.Size(35, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Job";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtEmployeeName
             // 

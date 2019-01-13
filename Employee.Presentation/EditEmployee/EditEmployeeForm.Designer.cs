@@ -105,6 +105,7 @@
             // 
             // txtOIB
             // 
+            this.txtOIB.Enabled = false;
             this.txtOIB.Location = new System.Drawing.Point(118, 121);
             this.txtOIB.Name = "txtOIB";
             this.txtOIB.Size = new System.Drawing.Size(172, 26);

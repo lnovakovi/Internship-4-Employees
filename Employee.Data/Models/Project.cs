@@ -8,7 +8,16 @@ namespace Employee.Data.Models
     {
         private string _nameOfTheProject;
 
-        public string NameOfTheProject { get => _nameOfTheProject; set => _nameOfTheProject = value.RemoveWhiteSpaces(); }
+        public string NameOfTheProject
+        {
+            get => _nameOfTheProject;
+            set
+            {
+                _nameOfTheProject = value.RemoveWhiteSpaces();
+                _nameOfTheProject = _nameOfTheProject.CapitalizeEachWord();
+            }
+        }
+
         public StateEnum.StateProject  StateOfTheProject{ get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -23,7 +32,7 @@ namespace Employee.Data.Models
 
         public override string ToString()
         {
-            return $"Name: {NameOfTheProject} , State: {StateOfTheProject}, Start: {StartDate} - End: {EndDate}";
+            return $"Name: {NameOfTheProject} , State: {StateOfTheProject}, Start: {StartDate:MM/dd/yyyy} - End: {EndDate:MM/dd/yyyy}";
         }
     }
 }

@@ -22,11 +22,6 @@ namespace Employee.Presentation.AddEmployee
             AddJobsToCombo();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RefreshProjectsInListBox()
         {
             lstBoxProjects.Items.Clear();
@@ -50,19 +45,28 @@ namespace Employee.Presentation.AddEmployee
             
             if (!txtEmployeeName.ToString().CheckIfEmpty() && !txtEmployeeSurname.ToString().CheckIfEmpty() &&
                 txtOIB.Text.TryParseInt()  && cmbJob.SelectedItem != null)
-            {           
-                MessageBox.Show(EmployeeRepository.AddEmployee(txtEmployeeName.Text, txtEmployeeSurname.Text, txtOIB.Text, dateEmployeeBirth.Value, cmbJob.SelectedItem.ToString()));
-                var selectedProjects = lstBoxProjects.SelectedItems;
-                foreach (var project in selectedProjects)
+            {
+                if (EmployeeRepository.AddEmployee(txtEmployeeName.Text, txtEmployeeSurname.Text, txtOIB.Text,
+                        dateEmployeeBirth.Value, cmbJob.SelectedItem.ToString()) == "OK")
                 {
-                    var popUp = new PopUpForWorkingHours(project as Project,txtOIB.Text);
-                    popUp.ShowDialog();
+                    MessageBox.Show("OK!");
+                    var selectedProjects = lstBoxProjects.SelectedItems;
+                    foreach (var project in selectedProjects)
+                    {
+                        var popUp = new PopUpForWorkingHours(project as Project, txtOIB.Text);
+                        popUp.ShowDialog();
+                    }
+                    Close();
                 }
-                Close();                
+                else
+                {
+                    MessageBox.Show(@"Adding failed,check date (must be older than 18), OIB only numbers","WARNING");
+                    Close();
+                }
             }             
             else
             {
-                MessageBox.Show(@"Wrong input");
+                MessageBox.Show(@"Wrong input. Check if you entered evertyhing right, job position must be selected, OIB only numbers etc.", "WRONG INPUT");
                 Close();
             }               
         }

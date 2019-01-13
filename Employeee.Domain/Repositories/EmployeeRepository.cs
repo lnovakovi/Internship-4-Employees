@@ -43,15 +43,14 @@ namespace Employeee.Domain.Repositories
             }
             return counter == 0;
         }
-        public static string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)
-    
+        public static string AddEmployee(string name,string surname,string OIB,DateTime dateOfBirth, string position)  
         {
             if (CheckOIB(OIB.RemoveAllTheWhiteSpaces()) && CheckAge(dateOfBirth))
             {
                 _listOfEmployees.Add(new EmployeeClass(name, surname, OIB, dateOfBirth, (JobEnum.Job)Enum.Parse(typeof(JobEnum.Job), position)));
-                return "OK!";
+                return "OK";
             }
-            return "Adding failed";
+            return "Fail";
         }
 
         public static bool EditEmployee(EmployeeClass itemForEdit)

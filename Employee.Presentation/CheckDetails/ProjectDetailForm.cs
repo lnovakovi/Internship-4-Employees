@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Employee.Data.Models;
+using Employee.Presentation.EditProject;
 using Employeee.Domain.Repositories;
 
 namespace Employee.Presentation.CheckDetails
@@ -38,6 +39,13 @@ namespace Employee.Presentation.CheckDetails
                 MessageBox.Show("You haven't chosen project.");
             }
             
+        }
+
+        private void OpenEditProjectForm(object sender, System.EventArgs e)
+        {
+            var selectedProject = chkListBoxProject.SelectedItem as Project;
+            var editForm = new EditProjectForm(selectedProject);
+            editForm.ShowDialog();
         }
     }
 }

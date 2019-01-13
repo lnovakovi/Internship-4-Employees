@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Employee.Data.Models;
 
 namespace Employeee.Domain.Repositories
@@ -10,10 +9,10 @@ namespace Employeee.Domain.Repositories
     {
         
         //relation employee-projects
-        private static List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> _employeeWithListOfProjects;
+        private static List<Tuple<EmployeeClass, List<Tuple<Project, int>>>> _employeeWithListOfProjects { get; set; }
 
         //relation project-employees
-        private static List<Tuple<Project, List<Tuple<EmployeeClass, int>>>> _projectWithListOfEmployees;
+        private static List<Tuple<Project, List<Tuple<EmployeeClass, int>>>> _projectWithListOfEmployees { get; set; }
 
         //method to return projects with employees
         public static List<Tuple<Project, List<Tuple<EmployeeClass, int>>>> GetAllData() => _projectWithListOfEmployees;
@@ -141,13 +140,14 @@ namespace Employeee.Domain.Repositories
                 if (employee.OIB == oib)
                 {
                    AddNewProjectToEmployee(employee,project,numberOfWorkingHours);
-                    AddNewEmployeeToTheProject(project, employee, numberOfWorkingHours);
+                   AddNewEmployeeToTheProject(project, employee, numberOfWorkingHours);
                 }
             }
         }
         public static string RemoveProjectFromRelation(Project projectToDelete)
         {
             //delete from relation project-employees
+            _projectWithListOfEmployees = GetAllData();
             foreach (var project in _projectWithListOfEmployees.ToList())
             {
                 if (project.Item1 == projectToDelete)
@@ -155,28 +155,33 @@ namespace Employeee.Domain.Repositories
                     _projectWithListOfEmployees.Remove(project);
                 }
             }
-            //delte from relation employee-project
+            RemoveProjectFromRelationEmployeeProject(projectToDelete);
+            ProjectRepository.DeleteProject(projectToDelete);
+            return $"Deleted successfully {projectToDelete.NameOfTheProject} ";
+        }
+
+        public static void RemoveProjectFromRelationEmployeeProject(Project projectToDelete)
+        {
+            //delete from relation employee-project
             foreach (var employee in _employeeWithListOfProjects.ToList())
             {
                 foreach (var project in employee.Item2.ToList())
                 {
                     if (project.Item1 == projectToDelete)
                     {
-                        if (employee.Item2.ToList().Count > 1)// if projectToDelete is the only employee's project,delete the whole relation
+                        if (employee.Item2.ToList().Count > 1)
                         {
                             employee.Item2.Remove(project);
                         }
                         else
                         {
-                            _employeeWithListOfProjects.Remove(employee); 
+                            _employeeWithListOfProjects.Remove(employee); //if that is only emp.project
                         }
-                    }                      
+                    }
                 }
             }
-            ProjectRepository.DeleteProject(projectToDelete);
-            return $"Deleted successfully {projectToDelete.NameOfTheProject} ";
         }
-
+        
         //deleteEmployee
         public static string RemoveEmployee(EmployeeClass selectedEmployee)
         {
@@ -198,7 +203,7 @@ namespace Employeee.Domain.Repositories
                                     EmployeeRepository.DeleteEmployee(selectedEmployee);
                                     return $"Deleted successfully {selectedEmployee.NameAndSurname()} ";
                                 }
-                            }                          
+                            }
                         }
                     }
                 }
@@ -208,10 +213,35 @@ namespace Employeee.Domain.Repositories
                 EmployeeRepository.DeleteEmployee(selectedEmployee);
                 return $"Deleted successfully {selectedEmployee.NameAndSurname()}";
             }
-
             return $"Can't delete {selectedEmployee.NameAndSurname()} because he/she is the only one on the project";
         }
 
+        public static bool RemoveEmployeeFromRelationProjectEmployee(EmployeeClass selectedEmployee)
+        {
+            foreach (var project in _projectWithListOfEmployees)
+            {
+                foreach (var employee in project.Item2.ToList())
+                {
+                    if (employee.Item1 == selectedEmployee && (project.Item2.ToList().Count > 1))
+                    { //delete from relation project-employees
+                        project.Item2.Remove(employee);
+                        //now delete from relation employee-projects
+                        foreach (var relation in _employeeWithListOfProjects.ToList())
+                        {
+                            if (relation.Item1 == selectedEmployee)
+                            {
+                                _employeeWithListOfProjects.ToList().Remove(relation);
+                                EmployeeRepository.DeleteEmployee(selectedEmployee);
+                                return true;
+                                //return $"Deleted successfully {selectedEmployee.NameAndSurname()} ";
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
         public static int CountHoursOnProjects(EmployeeClass employee)
         {
             var numHours = 0;
@@ -228,6 +258,38 @@ namespace Employeee.Domain.Repositories
             return numHours;
         }
 
+        public static void EditRelationEmployeeProject(EmployeeClass oldEmp,EmployeeClass newEmp)
+        {
+            foreach (var relation in _employeeWithListOfProjects.ToList())
+            {
+                if (relation.Item1.OIB == oldEmp.OIB)
+                {
+                    var list = relation.Item2;
+                    _employeeWithListOfProjects.Remove(relation);
+                    _employeeWithListOfProjects.Add(new Tuple<EmployeeClass, List<Tuple<Project, int>>>(newEmp,list));
+                    break;
+                }
+                    
+            }
+        }
+
+        public static void EditRelationProjectEmployee(EmployeeClass oldEmp,EmployeeClass newEmp)
+        {
+            foreach (var relation in _projectWithListOfEmployees.ToList())
+            {
+                foreach (var project in relation.Item2)
+                {
+                    if (project.Item1.OIB == oldEmp.OIB)
+                    {
+                        var workHours = project.Item2;
+                        relation.Item2.Remove(project);
+                        relation.Item2.Add(new Tuple<EmployeeClass, int>(newEmp,workHours));
+                        break;
+                    }
+                }
+            }
+        }
+
         public static bool CheckIfInRelation(EmployeeClass employee)
         {
             foreach (var relation in _employeeWithListOfProjects)
@@ -236,7 +298,17 @@ namespace Employeee.Domain.Repositories
                     return true;
             }
             return false;
-        }       
+        }
+
+        public static int GetNumberOfEmployees(Project project)
+        {
+            foreach (var relation in _projectWithListOfEmployees)
+            {
+                if (relation.Item1 == project)
+                    return relation.Item2.Count;
+            }
+            return 0;
+        }
     }
 }
 ;
